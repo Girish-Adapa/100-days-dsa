@@ -3,314 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeetCode 250: 100-Day Study Plan</title>
+    <title>NeetCode 250 - 150 Day Plan</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px;
             min-height: 100vh;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            border-radius: 20px;
             padding: 30px;
-            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        
-        .header h1 {
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            color: #667eea;
             font-size: 2.5em;
             margin-bottom: 10px;
         }
-        
-        .header p {
+
+        .date-info {
+            color: #666;
+            margin-top: 10px;
             font-size: 1.1em;
-            opacity: 0.9;
         }
-        
-        .info-section {
-            padding: 30px;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
-        }
-        
-        .info-grid {
+
+        .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin-top: 20px;
+            margin-bottom: 30px;
         }
-        
-        .info-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .info-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        
-        .info-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .info-card li {
-            padding: 5px 0;
-            color: #555;
-        }
-        
-        .controls {
-            padding: 20px 30px;
-            background: white;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            align-items: center;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .btn-success {
-            background: #10b981;
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background: #059669;
-        }
-        
-        input[type="text"] {
-            padding: 10px;
-            border: 2px solid #e9ecef;
-            border-radius: 5px;
-            font-size: 14px;
-            width: 200px;
-        }
-        
-        select {
-            padding: 10px;
-            border: 2px solid #e9ecef;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        
-        .table-container {
-            padding: 30px;
-            overflow-x: auto;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        
-        thead {
+
+        .stat-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        th {
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
-        
-        .checkbox-cell {
+            padding: 20px;
+            border-radius: 15px;
             text-align: center;
-            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        
-        .checkbox-cell input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: #667eea;
+
+        .stat-card h3 {
+            font-size: 2em;
+            margin-bottom: 5px;
         }
-        
-        .completed-row {
-            background: #f0fdf4 !important;
-            opacity: 0.8;
+
+        .stat-card p {
+            font-size: 0.9em;
+            opacity: 0.9;
         }
-        
-        .completed-problem {
-            text-decoration: line-through;
-            color: #9ca3af;
-        }
-        
-        td {
-            padding: 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        tbody tr {
-            transition: all 0.2s;
-        }
-        
-        tbody tr:hover {
-            background: #f8f9fa;
-            transform: scale(1.01);
-        }
-        
-        .day-cell {
-            font-weight: 700;
-            color: #667eea;
-        }
-        
-        .date-cell {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .topic-cell {
-            font-weight: 600;
-            color: #764ba2;
-        }
-        
-        .problem-cell {
-            color: #333;
-        }
-        
-        .link-cell a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        
-        .link-cell a:hover {
-            color: #764ba2;
-            text-decoration: underline;
-        }
-        
-        .difficulty {
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            display: inline-block;
-        }
-        
-        .easy {
-            background: #d1fae5;
-            color: #065f46;
-        }
-        
-        .medium {
-            background: #fed7aa;
-            color: #92400e;
-        }
-        
-        .hard {
-            background: #fecaca;
-            color: #991b1b;
-        }
-        
+
         .progress-bar {
-            margin: 20px 30px;
-            background: #e9ecef;
+            width: 100%;
             height: 30px;
+            background: #e0e0e0;
             border-radius: 15px;
             overflow: hidden;
-            position: relative;
+            margin-bottom: 30px;
         }
-        
+
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #10b981, #059669);
-            width: 0%;
-            transition: width 0.5s ease;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: bold;
         }
-        
-        .stats {
+
+        .controls {
             display: flex;
-            justify-content: space-around;
-            padding: 20px 30px;
-            background: #f8f9fa;
+            gap: 10px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
-            gap: 15px;
+            align-items: center;
         }
-        
-        .stat-item {
-            text-align: center;
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            font-size: 1em;
         }
-        
-        .stat-number {
-            font-size: 2em;
-            font-weight: 700;
+
+        .filter-btn, .reset-btn {
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            background: white;
             color: #667eea;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
         }
-        
-        .stat-label {
-            color: #666;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        
-        .reset-btn {
-            background: #ef4444;
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #667eea;
             color: white;
         }
-        
+
+        .reset-btn {
+            background: #f44336;
+            border-color: #f44336;
+            color: white;
+        }
+
         .reset-btn:hover {
-            background: #dc2626;
+            background: #d32f2f;
+            border-color: #d32f2f;
+        }
+
+        .day-section {
+            margin-bottom: 25px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .day-section.current-day {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .day-header.revision {
+            background: linear-gradient(135deg, #ffa726 0%, #fb8c00 100%);
+        }
+
+        .day-header.current {
+            background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+        }
+
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .day-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+
+        .day-progress {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .collapse-icon {
+            transition: transform 0.3s;
+            font-size: 0.8em;
+        }
+
+        .day-section.collapsed .collapse-icon {
+            transform: rotate(-90deg);
+        }
+
+        .problems-container {
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .problem-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .problem-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .problem-item.completed {
+            border-color: #4caf50;
+            background: #f1f8f4;
+        }
+
+        .problem-info {
+            flex: 1;
+        }
+
+        .problem-number {
+            font-size: 0.75em;
+            color: #999;
+            margin-bottom: 3px;
+        }
+
+        .problem-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .problem-meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .problem-difficulty {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+
+        .easy {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .hard {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .problem-topic {
+            font-size: 0.8em;
+            color: #666;
+            background: #f0f0f0;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
+        .problem-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .check-button {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 1.2em;
+        }
+
+        .problem-item.completed .check-button {
+            background: #4caf50;
+            border-color: #4caf50;
+            color: white;
+        }
+
+        .leetcode-link {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .leetcode-link:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .notes-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .notes-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+            resize: vertical;
+            min-height: 60px;
         }
         
-          .footer {
+                  .footer {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
@@ -329,11 +359,25 @@
             text-decoration: underline;
         }
 
+
+        @media (max-width: 768px) {
+            .problem-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .problem-actions {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 10px;
+            }
+        }
+
         @media print {
             body {
                 background: white;
             }
-            .controls, .btn, .progress-bar {
+            .controls, .reset-btn {
                 display: none;
             }
         }
@@ -341,745 +385,1601 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🦄 NeetCode 250: 100-Day Study Plan</h1>
-            <p>Daily Practice: 7:00 AM - 8:00 AM | 2-3 Problems per Day</p>
-        </div>
-        
-      
-        
-        <!-- <div class="progress-bar">
-            <div class="progress-fill" id="progressFill">0% Complete</div>
-        </div> -->
-        
+        <header>
+            <h1>🚀 NeetCode 250 - 150 Day Challenge</h1>
+            <div class="date-info">
+                <strong>Start Date:</strong> January 12, 2025<br>
+                <strong>End Date:</strong> June 10, 2025<br>
+                <strong>Today:</strong> <span id="currentDate"></span>
+            </div>
+        </header>
+
         <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number" id="completedCount">0</div>
-                <div class="stat-label">Problems Solved</div>
+            <div class="stat-card">
+                <h3 id="totalCompleted">0</h3>
+                <p>Problems Solved</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" id="remainingCount">250</div>
-                <div class="stat-label">Remaining</div>
+            <div class="stat-card">
+                <h3 id="totalRemaining">250</h3>
+                <p>Remaining</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-number" id="currentDay">Day 1</div>
-                <div class="stat-label">Current Progress</div>
+            <div class="stat-card">
+                <h3 id="currentDayNum">Day 1</h3>
+                <p>Current Day</p>
             </div>
-        </div>
-        
-        <div class="controls">
-            <input type="text" id="searchInput" placeholder="Search problems...">
-            <select id="topicFilter">
-                <option value="">All Topics</option>
-                <option value="Arrays & Hashing">Arrays & Hashing</option>
-                <option value="Two Pointers">Two Pointers</option>
-                <option value="Sliding Window">Sliding Window</option>
-                <option value="Stack">Stack</option>
-                <option value="Binary Search">Binary Search</option>
-                <option value="Linked List">Linked List</option>
-                <option value="Trees">Trees</option>
-                <option value="Heap">Heap/Priority Queue</option>
-                <option value="Backtracking">Backtracking</option>
-                <option value="Tries">Tries</option>
-                <option value="Graphs">Graphs</option>
-                <option value="Advanced Graphs">Advanced Graphs</option>
-                <option value="1-D DP">1-D Dynamic Programming</option>
-                <option value="2-D DP">2-D Dynamic Programming</option>
-                <option value="Greedy">Greedy</option>
-                <option value="Intervals">Intervals</option>
-                <option value="Math & Geometry">Math & Geometry</option>
-                <option value="Bit Manipulation">Bit Manipulation</option>
-            </select>
-            <button class="btn btn-primary" onclick="exportToCSV()">📥 Download CSV</button>
-            <button class="btn reset-btn" onclick="resetProgress()">🔄 Reset Progress</button>
-        </div>
-        
-        <div class="table-container">
-            <table id="studyTable">
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>Date</th>
-                        <th>Topic</th>
-                        <th>✓</th>
-                        <th>Problem 1</th>
-                        <th>Difficulty</th>
-                        <th>Link</th>
-                        <th>✓</th>
-                        <th>Problem 2</th>
-                        <th>Difficulty</th>
-                        <th>Link</th>
-                        <th>✓</th>
-                        <th>Problem 3</th>
-                        <th>Difficulty</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
+            <div class="stat-card">
+                <h3 id="percentComplete">0%</h3>
+                <p>Complete</p>
+            </div>
         </div>
 
-        <div class="footer">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%">0%</div>
+        </div>
+
+        <div class="controls">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search problems by name or number...">
+            <button class="filter-btn active" onclick="filterDays('all')">All Days</button>
+            <button class="filter-btn" onclick="filterDays('completed')">Completed</button>
+            <button class="filter-btn" onclick="filterDays('pending')">Pending</button>
+            <button class="filter-btn" onclick="filterDays('today')">Today</button>
+            <button class="reset-btn" onclick="resetProgress()">Reset Progress</button>
+        </div>
+
+        <div id="daysContainer"></div>
+         <div class="footer">
             © 2026 Girish-Sai-Adapa | NeetCode 250 Study Plan | Daily Practice 7-8 AM
         </div>
     </div>
-    
+
     <script>
-        const studyPlan = [
-            // Week 1: Arrays & Hashing (Days 1-8)
-            {day: 1, topic: "Arrays & Hashing", problems: [
-                {name: "Concatenation of Array", diff: "easy", link: "https://leetcode.com/problems/concatenation-of-array/"},
-                {name: "Contains Duplicate", diff: "easy", link: "https://leetcode.com/problems/contains-duplicate/"},
-                {name: "Valid Anagram", diff: "easy", link: "https://leetcode.com/problems/valid-anagram/"}
-            ]},
-            {day: 2, topic: "Arrays & Hashing", problems: [
-                {name: "Two Sum", diff: "easy", link: "https://leetcode.com/problems/two-sum/"},
-                {name: "Group Anagrams", diff: "medium", link: "https://leetcode.com/problems/group-anagrams/"},
-                {name: "Top K Frequent Elements", diff: "medium", link: "https://leetcode.com/problems/top-k-frequent-elements/"}
-            ]},
-            {day: 3, topic: "Arrays & Hashing", problems: [
-                {name: "Product of Array Except Self", diff: "medium", link: "https://leetcode.com/problems/product-of-array-except-self/"},
-                {name: "Valid Sudoku", diff: "medium", link: "https://leetcode.com/problems/valid-sudoku/"},
-                {name: "Longest Consecutive Sequence", diff: "medium", link: "https://leetcode.com/problems/longest-consecutive-sequence/"}
-            ]},
-            {day: 4, topic: "Arrays & Hashing", problems: [
-                {name: "Encode and Decode Strings", diff: "medium", link: "https://neetcode.io/problems/string-encode-and-decode"},
-                {name: "Find All Duplicates", diff: "medium", link: "https://leetcode.com/problems/find-all-duplicates-in-an-array/"},
-                {name: "Subarray Sum Equals K", diff: "medium", link: "https://leetcode.com/problems/subarray-sum-equals-k/"}
-            ]},
-            {day: 5, topic: "Arrays & Hashing", problems: [
-                {name: "Sort Colors", diff: "medium", link: "https://leetcode.com/problems/sort-colors/"},
-                {name: "Pascals Triangle", diff: "easy", link: "https://leetcode.com/problems/pascals-triangle/"},
-                {name: "Remove Element", diff: "easy", link: "https://leetcode.com/problems/remove-element/"}
-            ]},
-            {day: 6, topic: "Arrays & Hashing", problems: [
-                {name: "Unique Email Addresses", diff: "easy", link: "https://leetcode.com/problems/unique-email-addresses/"},
-                {name: "Isomorphic Strings", diff: "easy", link: "https://leetcode.com/problems/isomorphic-strings/"},
-                {name: "Can Place Flowers", diff: "easy", link: "https://leetcode.com/problems/can-place-flowers/"}
-            ]},
-            {day: 7, topic: "Arrays & Hashing", problems: [
-                {name: "Majority Element", diff: "easy", link: "https://leetcode.com/problems/majority-element/"},
-                {name: "Next Greater Element I", diff: "easy", link: "https://leetcode.com/problems/next-greater-element-i/"},
-                {name: "Find Pivot Index", diff: "easy", link: "https://leetcode.com/problems/find-pivot-index/"}
-            ]},
-            {day: 8, topic: "Arrays & Hashing", problems: [
-                {name: "Word Pattern", diff: "easy", link: "https://leetcode.com/problems/word-pattern/"},
-                {name: "Design HashSet", diff: "easy", link: "https://leetcode.com/problems/design-hashset/"},
-                {name: "Design HashMap", diff: "easy", link: "https://leetcode.com/problems/design-hashmap/"}
-            ]},
-            
-            // Week 2: Two Pointers (Days 9-13)
-            {day: 9, topic: "Two Pointers", problems: [
-                {name: "Valid Palindrome", diff: "easy", link: "https://leetcode.com/problems/valid-palindrome/"},
-                {name: "Two Sum II", diff: "medium", link: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"},
-                {name: "3Sum", diff: "medium", link: "https://leetcode.com/problems/3sum/"}
-            ]},
-            {day: 10, topic: "Two Pointers", problems: [
-                {name: "Container With Most Water", diff: "medium", link: "https://leetcode.com/problems/container-with-most-water/"},
-                {name: "Trapping Rain Water", diff: "hard", link: "https://leetcode.com/problems/trapping-rain-water/"},
-                {name: "Remove Duplicates from Sorted Array", diff: "easy", link: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/"}
-            ]},
-            {day: 11, topic: "Two Pointers", problems: [
-                {name: "Valid Palindrome II", diff: "easy", link: "https://leetcode.com/problems/valid-palindrome-ii/"},
-                {name: "Move Zeroes", diff: "easy", link: "https://leetcode.com/problems/move-zeroes/"},
-                {name: "Is Subsequence", diff: "easy", link: "https://leetcode.com/problems/is-subsequence/"}
-            ]},
-            {day: 12, topic: "Two Pointers", problems: [
-                {name: "Reverse String", diff: "easy", link: "https://leetcode.com/problems/reverse-string/"},
-                {name: "Sort Array by Parity", diff: "easy", link: "https://leetcode.com/problems/sort-array-by-parity/"},
-                {name: "Squares of Sorted Array", diff: "easy", link: "https://leetcode.com/problems/squares-of-a-sorted-array/"}
-            ]},
-            {day: 13, topic: "Two Pointers", problems: [
-                {name: "4Sum", diff: "medium", link: "https://leetcode.com/problems/4sum/"},
-                {name: "3Sum Closest", diff: "medium", link: "https://leetcode.com/problems/3sum-closest/"}
-            ]},
-            
-            // Week 3: Sliding Window (Days 14-17)
-            {day: 14, topic: "Sliding Window", problems: [
-                {name: "Best Time to Buy/Sell Stock", diff: "easy", link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"},
-                {name: "Longest Substring Without Repeating", diff: "medium", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/"},
-                {name: "Longest Repeating Character Replacement", diff: "medium", link: "https://leetcode.com/problems/longest-repeating-character-replacement/"}
-            ]},
-            {day: 15, topic: "Sliding Window", problems: [
-                {name: "Permutation in String", diff: "medium", link: "https://leetcode.com/problems/permutation-in-string/"},
-                {name: "Minimum Window Substring", diff: "hard", link: "https://leetcode.com/problems/minimum-window-substring/"},
-                {name: "Sliding Window Maximum", diff: "hard", link: "https://leetcode.com/problems/sliding-window-maximum/"}
-            ]},
-            {day: 16, topic: "Sliding Window", problems: [
-                {name: "Max Consecutive Ones III", diff: "medium", link: "https://leetcode.com/problems/max-consecutive-ones-iii/"},
-                {name: "Fruit Into Baskets", diff: "medium", link: "https://leetcode.com/problems/fruit-into-baskets/"}
-            ]},
-            {day: 17, topic: "Sliding Window", problems: [
-                {name: "Minimum Size Subarray Sum", diff: "medium", link: "https://leetcode.com/problems/minimum-size-subarray-sum/"},
-                {name: "Contains Duplicate II", diff: "easy", link: "https://leetcode.com/problems/contains-duplicate-ii/"}
-            ]},
-            
-            // Week 4: Stack (Days 18-22)
-            {day: 18, topic: "Stack", problems: [
-                {name: "Valid Parentheses", diff: "easy", link: "https://leetcode.com/problems/valid-parentheses/"},
-                {name: "Min Stack", diff: "medium", link: "https://leetcode.com/problems/min-stack/"},
-                {name: "Evaluate Reverse Polish Notation", diff: "medium", link: "https://leetcode.com/problems/evaluate-reverse-polish-notation/"}
-            ]},
-            {day: 19, topic: "Stack", problems: [
-                {name: "Generate Parentheses", diff: "medium", link: "https://leetcode.com/problems/generate-parentheses/"},
-                {name: "Daily Temperatures", diff: "medium", link: "https://leetcode.com/problems/daily-temperatures/"},
-                {name: "Car Fleet", diff: "medium", link: "https://leetcode.com/problems/car-fleet/"}
-            ]},
-            {day: 20, topic: "Stack", problems: [
-                {name: "Largest Rectangle in Histogram", diff: "hard", link: "https://leetcode.com/problems/largest-rectangle-in-histogram/"},
-                {name: "Baseball Game", diff: "easy", link: "https://leetcode.com/problems/baseball-game/"},
-                {name: "Valid Parenthesis String", diff: "medium", link: "https://leetcode.com/problems/valid-parenthesis-string/"}
-            ]},
-            {day: 21, topic: "Stack", problems: [
-                {name: "Simplify Path", diff: "medium", link: "https://leetcode.com/problems/simplify-path/"},
-                {name: "Remove All Adjacent Duplicates", diff: "easy", link: "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/"},
-                {name: "Next Greater Element II", diff: "medium", link: "https://leetcode.com/problems/next-greater-element-ii/"}
-            ]},
-            {day: 22, topic: "Stack", problems: [
-                {name: "132 Pattern", diff: "medium", link: "https://leetcode.com/problems/132-pattern/"},
-                {name: "Backspace String Compare", diff: "easy", link: "https://leetcode.com/problems/backspace-string-compare/"}
-            ]},
-            
-            // Week 5-6: Binary Search (Days 23-28)
-            {day: 23, topic: "Binary Search", problems: [
-                {name: "Binary Search", diff: "easy", link: "https://leetcode.com/problems/binary-search/"},
-                {name: "Search a 2D Matrix", diff: "medium", link: "https://leetcode.com/problems/search-a-2d-matrix/"},
-                {name: "Koko Eating Bananas", diff: "medium", link: "https://leetcode.com/problems/koko-eating-bananas/"}
-            ]},
-            {day: 24, topic: "Binary Search", problems: [
-                {name: "Find Minimum in Rotated Sorted Array", diff: "medium", link: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"},
-                {name: "Search in Rotated Sorted Array", diff: "medium", link: "https://leetcode.com/problems/search-in-rotated-sorted-array/"},
-                {name: "Time Based Key-Value Store", diff: "medium", link: "https://leetcode.com/problems/time-based-key-value-store/"}
-            ]},
-            {day: 25, topic: "Binary Search", problems: [
-                {name: "Median of Two Sorted Arrays", diff: "hard", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/"},
-                {name: "First Bad Version", diff: "easy", link: "https://leetcode.com/problems/first-bad-version/"},
-                {name: "Sqrt(x)", diff: "easy", link: "https://leetcode.com/problems/sqrtx/"}
-            ]},
-            {day: 26, topic: "Binary Search", problems: [
-                {name: "Valid Perfect Square", diff: "easy", link: "https://leetcode.com/problems/valid-perfect-square/"},
-                {name: "Guess Number Higher or Lower", diff: "easy", link: "https://leetcode.com/problems/guess-number-higher-or-lower/"},
-                {name: "Find Peak Element", diff: "medium", link: "https://leetcode.com/problems/find-peak-element/"}
-            ]},
-            {day: 27, topic: "Binary Search", problems: [
-                {name: "Search Insert Position", diff: "easy", link: "https://leetcode.com/problems/search-insert-position/"},
-                {name: "Single Element in Sorted Array", diff: "medium", link: "https://leetcode.com/problems/single-element-in-a-sorted-array/"},
-                {name: "Find Smallest Letter", diff: "easy", link: "https://leetcode.com/problems/find-smallest-letter-greater-than-target/"}
-            ]},
-            {day: 28, topic: "Binary Search", problems: [
-                {name: "Capacity To Ship Packages", diff: "medium", link: "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/"},
-                {name: "Split Array Largest Sum", diff: "hard", link: "https://leetcode.com/problems/split-array-largest-sum/"}
-            ]},
-            
-            // Week 7-8: Linked List (Days 29-35)
-            {day: 29, topic: "Linked List", problems: [
-                {name: "Reverse Linked List", diff: "easy", link: "https://leetcode.com/problems/reverse-linked-list/"},
-                {name: "Merge Two Sorted Lists", diff: "easy", link: "https://leetcode.com/problems/merge-two-sorted-lists/"},
-                {name: "Reorder List", diff: "medium", link: "https://leetcode.com/problems/reorder-list/"}
-            ]},
-            {day: 30, topic: "Linked List", problems: [
-                {name: "Remove Nth Node From End", diff: "medium", link: "https://leetcode.com/problems/remove-nth-node-from-end-of-list/"},
-                {name: "Copy List with Random Pointer", diff: "medium", link: "https://leetcode.com/problems/copy-list-with-random-pointer/"},
-                {name: "Add Two Numbers", diff: "medium", link: "https://leetcode.com/problems/add-two-numbers/"}
-            ]},
-            {day: 31, topic: "Linked List", problems: [
-                {name: "Linked List Cycle", diff: "easy", link: "https://leetcode.com/problems/linked-list-cycle/"},
-                {name: "Find Duplicate Number", diff: "medium", link: "https://leetcode.com/problems/find-the-duplicate-number/"},
-                {name: "LRU Cache", diff: "medium", link: "https://leetcode.com/problems/lru-cache/"}
-            ]},
-            {day: 32, topic: "Linked List", problems: [
-                {name: "Merge k Sorted Lists", diff: "hard", link: "https://leetcode.com/problems/merge-k-sorted-lists/"},
-                {name: "Reverse Nodes in k-Group", diff: "hard", link: "https://leetcode.com/problems/reverse-nodes-in-k-group/"},
-                {name: "Middle of Linked List", diff: "easy", link: "https://leetcode.com/problems/middle-of-the-linked-list/"}
-            ]},
-            {day: 33, topic: "Linked List", problems: [
-                {name: "Palindrome Linked List", diff: "easy", link: "https://leetcode.com/problems/palindrome-linked-list/"},
-                {name: "Remove Duplicates from Sorted List", diff: "easy", link: "https://leetcode.com/problems/remove-duplicates-from-sorted-list/"}
-            ]},
-            {day: 34, topic: "Linked List", problems: [
-                {name: "Intersection of Two Linked Lists", diff: "easy", link: "https://leetcode.com/problems/intersection-of-two-linked-lists/"},
-                {name: "Delete Node in Linked List", diff: "medium", link: "https://leetcode.com/problems/delete-node-in-a-linked-list/"}
-            ]},
-            {day: 35, topic: "Linked List", problems: [
-                {name: "Swap Nodes in Pairs", diff: "medium", link: "https://leetcode.com/problems/swap-nodes-in-pairs/"},
-                {name: "Rotate List", diff: "medium", link: "https://leetcode.com/problems/rotate-list/"}
-            ]},
-            
-            // Week 9-11: Trees (Days 36-46)
-            {day: 36, topic: "Trees", problems: [
-                {name: "Invert Binary Tree", diff: "easy", link: "https://leetcode.com/problems/invert-binary-tree/"},
-                {name: "Maximum Depth of Binary Tree", diff: "easy", link: "https://leetcode.com/problems/maximum-depth-of-binary-tree/"},
-                {name: "Diameter of Binary Tree", diff: "easy", link: "https://leetcode.com/problems/diameter-of-binary-tree/"}
-            ]},
-            {day: 37, topic: "Trees", problems: [
-                {name: "Balanced Binary Tree", diff: "easy", link: "https://leetcode.com/problems/balanced-binary-tree/"},
-                {name: "Same Tree", diff: "easy", link: "https://leetcode.com/problems/same-tree/"},
-                {name: "Subtree of Another Tree", diff: "easy", link: "https://leetcode.com/problems/subtree-of-another-tree/"}
-            ]},
-            {day: 38, topic: "Trees", problems: [
-                {name: "Lowest Common Ancestor BST", diff: "medium", link: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"},
-                {name: "Binary Tree Level Order Traversal", diff: "medium", link: "https://leetcode.com/problems/binary-tree-level-order-traversal/"},
-                {name: "Binary Tree Right Side View", diff: "medium", link: "https://leetcode.com/problems/binary-tree-right-side-view/"}
-            ]},
-            {day: 39, topic: "Trees", problems: [
-                {name: "Count Good Nodes in Binary Tree", diff: "medium", link: "https://leetcode.com/problems/count-good-nodes-in-binary-tree/"},
-                {name: "Validate Binary Search Tree", diff: "medium", link: "https://leetcode.com/problems/validate-binary-search-tree/"},
-                {name: "Kth Smallest Element in BST", diff: "medium", link: "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"}
-            ]},
-            {day: 40, topic: "Trees", problems: [
-                {name: "Construct Tree from Preorder/Inorder", diff: "medium", link: "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/"},
-                {name: "Binary Tree Max Path Sum", diff: "hard", link: "https://leetcode.com/problems/binary-tree-maximum-path-sum/"},
-                {name: "Serialize and Deserialize Binary Tree", diff: "hard", link: "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/"}
-            ]},
-            {day: 41, topic: "Trees", problems: [
-                {name: "Min Depth of Binary Tree", diff: "easy", link: "https://leetcode.com/problems/minimum-depth-of-binary-tree/"},
-                {name: "Path Sum", diff: "easy", link: "https://leetcode.com/problems/path-sum/"},
-                {name: "Symmetric Tree", diff: "easy", link: "https://leetcode.com/problems/symmetric-tree/"}
-            ]},
-            {day: 42, topic: "Trees", problems: [
-                {name: "Binary Tree Zigzag Level Order", diff: "medium", link: "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/"},
-                {name: "Lowest Common Ancestor Binary Tree", diff: "medium", link: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/"}
-            ]},
-            {day: 43, topic: "Trees", problems: [
-                {name: "Binary Tree Paths", diff: "easy", link: "https://leetcode.com/problems/binary-tree-paths/"},
-                {name: "Sum Root to Leaf Numbers", diff: "medium", link: "https://leetcode.com/problems/sum-root-to-leaf-numbers/"}
-            ]},
-            {day: 44, topic: "Trees", problems: [
-                {name: "Flatten Binary Tree to Linked List", diff: "medium", link: "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/"},
-                {name: "Populating Next Right Pointers", diff: "medium", link: "https://leetcode.com/problems/populating-next-right-pointers-in-each-node/"}
-            ]},
-            {day: 45, topic: "Trees", problems: [
-                {name: "Binary Tree Inorder Traversal", diff: "easy", link: "https://leetcode.com/problems/binary-tree-inorder-traversal/"},
-                {name: "Binary Tree Preorder Traversal", diff: "easy", link: "https://leetcode.com/problems/binary-tree-preorder-traversal/"}
-            ]},
-            {day: 46, topic: "Trees", problems: [
-                {name: "Binary Tree Postorder Traversal", diff: "easy", link: "https://leetcode.com/problems/binary-tree-postorder-traversal/"},
-                {name: "Recover Binary Search Tree", diff: "medium", link: "https://leetcode.com/problems/recover-binary-search-tree/"}
-            ]},
-            
-            // Week 12: Heap/Priority Queue (Days 47-51)
-            {day: 47, topic: "Heap", problems: [
-                {name: "Kth Largest Element in Array", diff: "medium", link: "https://leetcode.com/problems/kth-largest-element-in-an-array/"},
-                {name: "Last Stone Weight", diff: "easy", link: "https://leetcode.com/problems/last-stone-weight/"},
-                {name: "K Closest Points to Origin", diff: "medium", link: "https://leetcode.com/problems/k-closest-points-to-origin/"}
-            ]},
-            {day: 48, topic: "Heap", problems: [
-                {name: "Kth Largest Element in Stream", diff: "easy", link: "https://leetcode.com/problems/kth-largest-element-in-a-stream/"},
-                {name: "Task Scheduler", diff: "medium", link: "https://leetcode.com/problems/task-scheduler/"},
-                {name: "Design Twitter", diff: "medium", link: "https://leetcode.com/problems/design-twitter/"}
-            ]},
-            {day: 49, topic: "Heap", problems: [
-                {name: "Find Median from Data Stream", diff: "hard", link: "https://leetcode.com/problems/find-median-from-data-stream/"},
-                {name: "Top K Frequent Words", diff: "medium", link: "https://leetcode.com/problems/top-k-frequent-words/"}
-            ]},
-            {day: 50, topic: "Heap", problems: [
-                {name: "Meeting Rooms II", diff: "medium", link: "https://neetcode.io/problems/meeting-schedule-ii"},
-                {name: "Reorganize String", diff: "medium", link: "https://leetcode.com/problems/reorganize-string/"}
-            ]},
-            {day: 51, topic: "Heap", problems: [
-                {name: "Minimum Cost to Connect Sticks", diff: "medium", link: "https://leetcode.com/problems/minimum-cost-to-connect-sticks/"},
-                {name: "Relative Ranks", diff: "easy", link: "https://leetcode.com/problems/relative-ranks/"}
-            ]},
-            
-            // Week 13-14: Backtracking (Days 52-60)
-            {day: 52, topic: "Backtracking", problems: [
-                {name: "Subsets", diff: "medium", link: "https://leetcode.com/problems/subsets/"},
-                {name: "Combination Sum", diff: "medium", link: "https://leetcode.com/problems/combination-sum/"},
-                {name: "Permutations", diff: "medium", link: "https://leetcode.com/problems/permutations/"}
-            ]},
-            {day: 53, topic: "Backtracking", problems: [
-                {name: "Subsets II", diff: "medium", link: "https://leetcode.com/problems/subsets-ii/"},
-                {name: "Combination Sum II", diff: "medium", link: "https://leetcode.com/problems/combination-sum-ii/"},
-                {name: "Word Search", diff: "medium", link: "https://leetcode.com/problems/word-search/"}
-            ]},
-            {day: 54, topic: "Backtracking", problems: [
-                {name: "Palindrome Partitioning", diff: "medium", link: "https://leetcode.com/problems/palindrome-partitioning/"},
-                {name: "Letter Combinations Phone Number", diff: "medium", link: "https://leetcode.com/problems/letter-combinations-of-a-phone-number/"},
-                {name: "N-Queens", diff: "hard", link: "https://leetcode.com/problems/n-queens/"}
-            ]},
-            {day: 55, topic: "Backtracking", problems: [
-                {name: "Generate Parentheses", diff: "medium", link: "https://leetcode.com/problems/generate-parentheses/"},
-                {name: "Combination Sum III", diff: "medium", link: "https://leetcode.com/problems/combination-sum-iii/"}
-            ]},
-            {day: 56, topic: "Backtracking", problems: [
-                {name: "Combinations", diff: "medium", link: "https://leetcode.com/problems/combinations/"},
-                {name: "Permutations II", diff: "medium", link: "https://leetcode.com/problems/permutations-ii/"}
-            ]},
-            {day: 57, topic: "Backtracking", problems: [
-                {name: "Additive Number", diff: "medium", link: "https://leetcode.com/problems/additive-number/"},
-                {name: "Splitting String Into Desc Consecutive", diff: "medium", link: "https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/"}
-            ]},
-            {day: 58, topic: "Backtracking", problems: [
-                {name: "Word Search II", diff: "hard", link: "https://leetcode.com/problems/word-search-ii/"},
-                {name: "Restore IP Addresses", diff: "medium", link: "https://leetcode.com/problems/restore-ip-addresses/"}
-            ]},
-            {day: 59, topic: "Backtracking", problems: [
-                {name: "Sudoku Solver", diff: "hard", link: "https://leetcode.com/problems/sudoku-solver/"}
-            ]},
-            {day: 60, topic: "Backtracking", problems: [
-                {name: "Beautiful Arrangement", diff: "medium", link: "https://leetcode.com/problems/beautiful-arrangement/"},
-                {name: "Binary Watch", diff: "easy", link: "https://leetcode.com/problems/binary-watch/"}
-            ]},
-            
-            // Week 15: Tries (Days 61-63)
-            {day: 61, topic: "Tries", problems: [
-                {name: "Implement Trie", diff: "medium", link: "https://leetcode.com/problems/implement-trie-prefix-tree/"},
-                {name: "Design Add and Search Words", diff: "medium", link: "https://leetcode.com/problems/design-add-and-search-words-data-structure/"}
-            ]},
-            {day: 62, topic: "Tries", problems: [
-                {name: "Word Search II", diff: "hard", link: "https://leetcode.com/problems/word-search-ii/"},
-                {name: "Longest Common Prefix", diff: "easy", link: "https://leetcode.com/problems/longest-common-prefix/"}
-            ]},
-            {day: 63, topic: "Tries", problems: [
-                {name: "Replace Words", diff: "medium", link: "https://leetcode.com/problems/replace-words/"},
-                {name: "Extra Characters in String", diff: "medium", link: "https://leetcode.com/problems/extra-characters-in-a-string/"}
-            ]},
-            
-            // Week 16-18: Graphs (Days 64-72)
-            {day: 64, topic: "Graphs", problems: [
-                {name: "Number of Islands", diff: "medium", link: "https://leetcode.com/problems/number-of-islands/"},
-                {name: "Clone Graph", diff: "medium", link: "https://leetcode.com/problems/clone-graph/"},
-                {name: "Max Area of Island", diff: "medium", link: "https://leetcode.com/problems/max-area-of-island/"}
-            ]},
-            {day: 65, topic: "Graphs", problems: [
-                {name: "Pacific Atlantic Water Flow", diff: "medium", link: "https://leetcode.com/problems/pacific-atlantic-water-flow/"},
-                {name: "Surrounded Regions", diff: "medium", link: "https://leetcode.com/problems/surrounded-regions/"},
-                {name: "Rotting Oranges", diff: "medium", link: "https://leetcode.com/problems/rotting-oranges/"}
-            ]},
-            {day: 66, topic: "Graphs", problems: [
-                {name: "Walls and Gates", diff: "medium", link: "https://neetcode.io/problems/islands-and-treasure"},
-                {name: "Course Schedule", diff: "medium", link: "https://leetcode.com/problems/course-schedule/"},
-                {name: "Course Schedule II", diff: "medium", link: "https://leetcode.com/problems/course-schedule-ii/"}
-            ]},
-            {day: 67, topic: "Graphs", problems: [
-                {name: "Redundant Connection", diff: "medium", link: "https://leetcode.com/problems/redundant-connection/"},
-                {name: "Number of Connected Components", diff: "medium", link: "https://neetcode.io/problems/count-connected-components"},
-                {name: "Graph Valid Tree", diff: "medium", link: "https://neetcode.io/problems/valid-tree"}
-            ]},
-            {day: 68, topic: "Graphs", problems: [
-                {name: "Word Ladder", diff: "hard", link: "https://leetcode.com/problems/word-ladder/"},
-                {name: "Flood Fill", diff: "easy", link: "https://leetcode.com/problems/flood-fill/"}
-            ]},
-            {day: 69, topic: "Graphs", problems: [
-                {name: "01 Matrix", diff: "medium", link: "https://leetcode.com/problems/01-matrix/"},
-                {name: "Is Graph Bipartite", diff: "medium", link: "https://leetcode.com/problems/is-graph-bipartite/"}
-            ]},
-            {day: 70, topic: "Graphs", problems: [
-                {name: "Find If Path Exists in Graph", diff: "easy", link: "https://leetcode.com/problems/find-if-path-exists-in-graph/"},
-                {name: "All Paths From Source to Target", diff: "medium", link: "https://leetcode.com/problems/all-paths-from-source-to-target/"}
-            ]},
-            {day: 71, topic: "Graphs", problems: [
-                {name: "Shortest Bridge", diff: "medium", link: "https://leetcode.com/problems/shortest-bridge/"},
-                {name: "As Far from Land as Possible", diff: "medium", link: "https://leetcode.com/problems/as-far-from-land-as-possible/"}
-            ]},
-            {day: 72, topic: "Graphs", problems: [
-                {name: "Minimum Number of Vertices", diff: "medium", link: "https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/"},
-                {name: "Network Delay Time", diff: "medium", link: "https://leetcode.com/problems/network-delay-time/"}
-            ]},
-            
-            // Week 19: Advanced Graphs (Days 73-77)
-            {day: 73, topic: "Advanced Graphs", problems: [
-                {name: "Reconstruct Itinerary", diff: "hard", link: "https://leetcode.com/problems/reconstruct-itinerary/"},
-                {name: "Min Cost to Connect All Points", diff: "medium", link: "https://leetcode.com/problems/min-cost-to-connect-all-points/"}
-            ]},
-            {day: 74, topic: "Advanced Graphs", problems: [
-                {name: "Network Delay Time", diff: "medium", link: "https://leetcode.com/problems/network-delay-time/"},
-                {name: "Swim in Rising Water", diff: "hard", link: "https://leetcode.com/problems/swim-in-rising-water/"}
-            ]},
-            {day: 75, topic: "Advanced Graphs", problems: [
-                {name: "Alien Dictionary", diff: "hard", link: "https://neetcode.io/problems/foreign-dictionary"},
-                {name: "Cheapest Flights K Stops", diff: "medium", link: "https://leetcode.com/problems/cheapest-flights-within-k-stops/"}
-            ]},
-            {day: 76, topic: "Advanced Graphs", problems: [
-                {name: "Path with Minimum Effort", diff: "medium", link: "https://leetcode.com/problems/path-with-minimum-effort/"},
-                {name: "Find City Smallest Neighbors", diff: "medium", link: "https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/"}
-            ]},
-            {day: 77, topic: "Advanced Graphs", problems: [
-                {name: "Critical Connections in Network", diff: "hard", link: "https://leetcode.com/problems/critical-connections-in-a-network/"},
-                {name: "Checking Existence of Edge", diff: "hard", link: "https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/"}
-            ]},
-            
-            // Week 20-21: 1-D Dynamic Programming (Days 78-85)
-            {day: 78, topic: "1-D DP", problems: [
-                {name: "Climbing Stairs", diff: "easy", link: "https://leetcode.com/problems/climbing-stairs/"},
-                {name: "Min Cost Climbing Stairs", diff: "easy", link: "https://leetcode.com/problems/min-cost-climbing-stairs/"},
-                {name: "House Robber", diff: "medium", link: "https://leetcode.com/problems/house-robber/"}
-            ]},
-            {day: 79, topic: "1-D DP", problems: [
-                {name: "House Robber II", diff: "medium", link: "https://leetcode.com/problems/house-robber-ii/"},
-                {name: "Longest Palindromic Substring", diff: "medium", link: "https://leetcode.com/problems/longest-palindromic-substring/"},
-                {name: "Palindromic Substrings", diff: "medium", link: "https://leetcode.com/problems/palindromic-substrings/"}
-            ]},
-            {day: 80, topic: "1-D DP", problems: [
-                {name: "Decode Ways", diff: "medium", link: "https://leetcode.com/problems/decode-ways/"},
-                {name: "Coin Change", diff: "medium", link: "https://leetcode.com/problems/coin-change/"},
-                {name: "Maximum Product Subarray", diff: "medium", link: "https://leetcode.com/problems/maximum-product-subarray/"}
-            ]},
-            {day: 81, topic: "1-D DP", problems: [
-                {name: "Word Break", diff: "medium", link: "https://leetcode.com/problems/word-break/"},
-                {name: "Longest Increasing Subsequence", diff: "medium", link: "https://leetcode.com/problems/longest-increasing-subsequence/"},
-                {name: "Partition Equal Subset Sum", diff: "medium", link: "https://leetcode.com/problems/partition-equal-subset-sum/"}
-            ]},
-            {day: 82, topic: "1-D DP", problems: [
-                {name: "Nth Tribonacci Number", diff: "easy", link: "https://leetcode.com/problems/n-th-tribonacci-number/"},
-                {name: "Divisor Game", diff: "easy", link: "https://leetcode.com/problems/divisor-game/"}
-            ]},
-            {day: 83, topic: "1-D DP", problems: [
-                {name: "Delete and Earn", diff: "medium", link: "https://leetcode.com/problems/delete-and-earn/"},
-                {name: "Count Number of Ways", diff: "medium", link: "https://leetcode.com/problems/count-number-of-ways-to-place-houses/"}
-            ]},
-            {day: 84, topic: "1-D DP", problems: [
-                {name: "Integer Break", diff: "medium", link: "https://leetcode.com/problems/integer-break/"},
-                {name: "Counting Bits", diff: "easy", link: "https://leetcode.com/problems/counting-bits/"}
-            ]},
-            {day: 85, topic: "1-D DP", problems: [
-                {name: "Ugly Number II", diff: "medium", link: "https://leetcode.com/problems/ugly-number-ii/"},
-                {name: "Pascal's Triangle II", diff: "easy", link: "https://leetcode.com/problems/pascals-triangle-ii/"}
-            ]},
-            
-            // Week 22-23: 2-D Dynamic Programming (Days 86-92)
-            {day: 86, topic: "2-D DP", problems: [
-                {name: "Unique Paths", diff: "medium", link: "https://leetcode.com/problems/unique-paths/"},
-                {name: "Longest Common Subsequence", diff: "medium", link: "https://leetcode.com/problems/longest-common-subsequence/"}
-            ]},
-            {day: 87, topic: "2-D DP", problems: [
-                {name: "Best Time to Buy/Sell Stock w/ Cooldown", diff: "medium", link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/"},
-                {name: "Coin Change II", diff: "medium", link: "https://leetcode.com/problems/coin-change-ii/"}
-            ]},
-            {day: 88, topic: "2-D DP", problems: [
-                {name: "Target Sum", diff: "medium", link: "https://leetcode.com/problems/target-sum/"},
-                {name: "Interleaving String", diff: "medium", link: "https://leetcode.com/problems/interleaving-string/"}
-            ]},
-            {day: 89, topic: "2-D DP", problems: [
-                {name: "Longest Increasing Path in Matrix", diff: "hard", link: "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/"},
-                {name: "Distinct Subsequences", diff: "hard", link: "https://leetcode.com/problems/distinct-subsequences/"}
-            ]},
-            {day: 90, topic: "2-D DP", problems: [
-                {name: "Edit Distance", diff: "medium", link: "https://leetcode.com/problems/edit-distance/"},
-                {name: "Burst Balloons", diff: "hard", link: "https://leetcode.com/problems/burst-balloons/"}
-            ]},
-            {day: 91, topic: "2-D DP", problems: [
-                {name: "Regular Expression Matching", diff: "hard", link: "https://leetcode.com/problems/regular-expression-matching/"},
-                {name: "Triangle", diff: "medium", link: "https://leetcode.com/problems/triangle/"}
-            ]},
-            {day: 92, topic: "2-D DP", problems: [
-                {name: "Minimum Path Sum", diff: "medium", link: "https://leetcode.com/problems/minimum-path-sum/"},
-                {name: "Unique Paths II", diff: "medium", link: "https://leetcode.com/problems/unique-paths-ii/"}
-            ]},
-            
-            // Week 24: Greedy (Days 93-96)
-            {day: 93, topic: "Greedy", problems: [
-                {name: "Maximum Subarray", diff: "medium", link: "https://leetcode.com/problems/maximum-subarray/"},
-                {name: "Jump Game", diff: "medium", link: "https://leetcode.com/problems/jump-game/"},
-                {name: "Jump Game II", diff: "medium", link: "https://leetcode.com/problems/jump-game-ii/"}
-            ]},
-            {day: 94, topic: "Greedy", problems: [
-                {name: "Gas Station", diff: "medium", link: "https://leetcode.com/problems/gas-station/"},
-                {name: "Hand of Straights", diff: "medium", link: "https://leetcode.com/problems/hand-of-straights/"},
-                {name: "Merge Triplets to Form Target", diff: "medium", link: "https://leetcode.com/problems/merge-triplets-to-form-target-triplet/"}
-            ]},
-            {day: 95, topic: "Greedy", problems: [
-                {name: "Partition Labels", diff: "medium", link: "https://leetcode.com/problems/partition-labels/"},
-                {name: "Valid Parenthesis String", diff: "medium", link: "https://leetcode.com/problems/valid-parenthesis-string/"},
-                {name: "Assign Cookies", diff: "easy", link: "https://leetcode.com/problems/assign-cookies/"}
-            ]},
-            {day: 96, topic: "Greedy", problems: [
-                {name: "Lemonade Change", diff: "easy", link: "https://leetcode.com/problems/lemonade-change/"},
-                {name: "Monotone Increasing Digits", diff: "medium", link: "https://leetcode.com/problems/monotone-increasing-digits/"},
-                {name: "Best Time Buy/Sell Stock II", diff: "medium", link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/"}
-            ]},
-            
-            // Week 25: Intervals, Math & Bit (Days 97-100)
-            {day: 97, topic: "Intervals", problems: [
-                {name: "Insert Interval", diff: "medium", link: "https://leetcode.com/problems/insert-interval/"},
-                {name: "Merge Intervals", diff: "medium", link: "https://leetcode.com/problems/merge-intervals/"},
-                {name: "Non-overlapping Intervals", diff: "medium", link: "https://leetcode.com/problems/non-overlapping-intervals/"}
-            ]},
-            {day: 98, topic: "Intervals", problems: [
-                {name: "Meeting Rooms", diff: "easy", link: "https://neetcode.io/problems/meeting-schedule"},
-                {name: "Meeting Rooms II", diff: "medium", link: "https://neetcode.io/problems/meeting-schedule-ii"},
-                {name: "Minimum Interval to Include Each Query", diff: "hard", link: "https://leetcode.com/problems/minimum-interval-to-include-each-query/"}
-            ]},
-            {day: 99, topic: "Math & Geometry", problems: [
-                {name: "Rotate Image", diff: "medium", link: "https://leetcode.com/problems/rotate-image/"},
-                {name: "Spiral Matrix", diff: "medium", link: "https://leetcode.com/problems/spiral-matrix/"},
-                {name: "Set Matrix Zeroes", diff: "medium", link: "https://leetcode.com/problems/set-matrix-zeroes/"}
-            ]},
-            {day: 100, topic: "Bit & Math", problems: [
-                {name: "Single Number", diff: "easy", link: "https://leetcode.com/problems/single-number/"},
-                {name: "Number of 1 Bits", diff: "easy", link: "https://leetcode.com/problems/number-of-1-bits/"},
-                {name: "Counting Bits", diff: "easy", link: "https://leetcode.com/problems/counting-bits/"},
-                {name: "Reverse Bits", diff: "easy", link: "https://leetcode.com/problems/reverse-bits/"}
-            ]}
+        const START_DATE = new Date('2025-01-12');
+        
+        const dailyPlan = [
+            // Week 1: Arrays & Hashing
+            {
+                day: 1,
+                date: "Jan 12, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Contains Duplicate", difficulty: "easy", link: "https://leetcode.com/problems/contains-duplicate/" },
+                    { title: "Valid Anagram", difficulty: "easy", link: "https://leetcode.com/problems/valid-anagram/" }
+                ]
+            },
+            {
+                day: 2,
+                date: "Jan 13, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Two Sum", difficulty: "easy", link: "https://leetcode.com/problems/two-sum/" },
+                    { title: "Group Anagrams", difficulty: "medium", link: "https://leetcode.com/problems/group-anagrams/" }
+                ]
+            },
+            {
+                day: 3,
+                date: "Jan 14, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Top K Frequent Elements", difficulty: "medium", link: "https://leetcode.com/problems/top-k-frequent-elements/" },
+                    { title: "Product of Array Except Self", difficulty: "medium", link: "https://leetcode.com/problems/product-of-array-except-self/" }
+                ]
+            },
+            {
+                day: 4,
+                date: "Jan 15, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Valid Sudoku", difficulty: "medium", link: "https://leetcode.com/problems/valid-sudoku/" },
+                    { title: "Encode and Decode Strings", difficulty: "medium", link: "https://leetcode.com/problems/encode-and-decode-strings/" }
+                ]
+            },
+            {
+                day: 5,
+                date: "Jan 16, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Longest Consecutive Sequence", difficulty: "medium", link: "https://leetcode.com/problems/longest-consecutive-sequence/" },
+                    { title: "Palindrome Number", difficulty: "easy", link: "https://leetcode.com/problems/palindrome-number/" }
+                ]
+            },
+            {
+                day: 6,
+                date: "Jan 17, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Roman to Integer", difficulty: "easy", link: "https://leetcode.com/problems/roman-to-integer/" },
+                    { title: "Majority Element", difficulty: "easy", link: "https://leetcode.com/problems/majority-element/" }
+                ]
+            },
+            {
+                day: 7,
+                date: "Jan 18, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 2: Arrays & Hashing + Two Pointers
+            {
+                day: 8,
+                date: "Jan 19, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Contains Duplicate II", difficulty: "easy", link: "https://leetcode.com/problems/contains-duplicate-ii/" },
+                    { title: "Happy Number", difficulty: "easy", link: "https://leetcode.com/problems/happy-number/" }
+                ]
+            },
+            {
+                day: 9,
+                date: "Jan 20, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Plus One", difficulty: "easy", link: "https://leetcode.com/problems/plus-one/" },
+                    { title: "Longest Common Prefix", difficulty: "easy", link: "https://leetcode.com/problems/longest-common-prefix/" }
+                ]
+            },
+            {
+                day: 10,
+                date: "Jan 21, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Find All Numbers Disappeared in an Array", difficulty: "easy", link: "https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/" },
+                    { title: "Isomorphic Strings", difficulty: "easy", link: "https://leetcode.com/problems/isomorphic-strings/" }
+                ]
+            },
+            {
+                day: 11,
+                date: "Jan 22, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Is Subsequence", difficulty: "easy", link: "https://leetcode.com/problems/is-subsequence/" },
+                    { title: "Subarray Sum Equals K", difficulty: "medium", link: "https://leetcode.com/problems/subarray-sum-equals-k/" }
+                ]
+            },
+            {
+                day: 12,
+                date: "Jan 23, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Next Greater Element I", difficulty: "easy", link: "https://leetcode.com/problems/next-greater-element-i/" },
+                    { title: "Find Pivot Index", difficulty: "easy", link: "https://leetcode.com/problems/find-pivot-index/" }
+                ]
+            },
+            {
+                day: 13,
+                date: "Jan 24, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Range Sum Query - Immutable", difficulty: "easy", link: "https://leetcode.com/problems/range-sum-query-immutable/" },
+                    { title: "Find the Difference", difficulty: "easy", link: "https://leetcode.com/problems/find-the-difference/" }
+                ]
+            },
+            {
+                day: 14,
+                date: "Jan 25, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 3: Arrays & Hashing + Two Pointers
+            {
+                day: 15,
+                date: "Jan 26, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Word Pattern", difficulty: "easy", link: "https://leetcode.com/problems/word-pattern/" },
+                    { title: "Largest Number", difficulty: "medium", link: "https://leetcode.com/problems/largest-number/" }
+                ]
+            },
+            {
+                day: 16,
+                date: "Jan 27, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Sort an Array", difficulty: "medium", link: "https://leetcode.com/problems/sort-an-array/" },
+                    { title: "Design HashSet", difficulty: "easy", link: "https://leetcode.com/problems/design-hashset/" }
+                ]
+            },
+            {
+                day: 17,
+                date: "Jan 28, 2025",
+                topic: "Arrays & Hashing",
+                problems: [
+                    { title: "Design HashMap", difficulty: "easy", link: "https://leetcode.com/problems/design-hashmap/" },
+                    { title: "Insert Delete GetRandom O(1)", difficulty: "medium", link: "https://leetcode.com/problems/insert-delete-getrandom-o1/" }
+                ]
+            },
+            {
+                day: 18,
+                date: "Jan 29, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "Valid Palindrome", difficulty: "easy", link: "https://leetcode.com/problems/valid-palindrome/" },
+                    { title: "Two Sum II", difficulty: "medium", link: "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" }
+                ]
+            },
+            {
+                day: 19,
+                date: "Jan 30, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "3Sum", difficulty: "medium", link: "https://leetcode.com/problems/3sum/" },
+                    { title: "Container With Most Water", difficulty: "medium", link: "https://leetcode.com/problems/container-with-most-water/" }
+                ]
+            },
+            {
+                day: 20,
+                date: "Jan 31, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "Trapping Rain Water", difficulty: "hard", link: "https://leetcode.com/problems/trapping-rain-water/" },
+                    { title: "Remove Duplicates from Sorted Array", difficulty: "easy", link: "https://leetcode.com/problems/remove-duplicates-from-sorted-array/" }
+                ]
+            },
+            {
+                day: 21,
+                date: "Feb 1, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 4: Two Pointers
+            {
+                day: 22,
+                date: "Feb 2, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "Remove Element", difficulty: "easy", link: "https://leetcode.com/problems/remove-element/" },
+                    { title: "Move Zeroes", difficulty: "easy", link: "https://leetcode.com/problems/move-zeroes/" }
+                ]
+            },
+            {
+                day: 23,
+                date: "Feb 3, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "Merge Sorted Array", difficulty: "easy", link: "https://leetcode.com/problems/merge-sorted-array/" },
+                    { title: "Sort Colors", difficulty: "medium", link: "https://leetcode.com/problems/sort-colors/" }
+                ]
+            },
+            {
+                day: 24,
+                date: "Feb 4, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "3Sum Closest", difficulty: "medium", link: "https://leetcode.com/problems/3sum-closest/" },
+                    { title: "4Sum", difficulty: "medium", link: "https://leetcode.com/problems/4sum/" }
+                ]
+            },
+            {
+                day: 25,
+                date: "Feb 5, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "Remove Duplicates from Sorted Array II", difficulty: "medium", link: "https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/" },
+                    { title: "Squares of a Sorted Array", difficulty: "easy", link: "https://leetcode.com/problems/squares-of-a-sorted-array/" }
+                ]
+            },
+            {
+                day: 26,
+                date: "Feb 6, 2025",
+                topic: "Two Pointers",
+                problems: [
+                    { title: "Reverse String", difficulty: "easy", link: "https://leetcode.com/problems/reverse-string/" },
+                    { title: "Best Time to Buy and Sell Stock", difficulty: "easy", link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" }
+                ]
+            },
+            {
+                day: 27,
+                date: "Feb 7, 2025",
+                topic: "Sliding Window",
+                problems: [
+                    { title: "Longest Substring Without Repeating Characters", difficulty: "medium", link: "https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
+                    { title: "Longest Repeating Character Replacement", difficulty: "medium", link: "https://leetcode.com/problems/longest-repeating-character-replacement/" }
+                ]
+            },
+            {
+                day: 28,
+                date: "Feb 8, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 5: Sliding Window
+            {
+                day: 29,
+                date: "Feb 9, 2025",
+                topic: "Sliding Window",
+                problems: [
+                    { title: "Permutation in String", difficulty: "medium", link: "https://leetcode.com/problems/permutation-in-string/" },
+                    { title: "Minimum Window Substring", difficulty: "hard", link: "https://leetcode.com/problems/minimum-window-substring/" }
+                ]
+            },
+            {
+                day: 30,
+                date: "Feb 10, 2025",
+                topic: "Sliding Window",
+                problems: [
+                    { title: "Sliding Window Maximum", difficulty: "hard", link: "https://leetcode.com/problems/sliding-window-maximum/" },
+                    { title: "Find All Anagrams in a String", difficulty: "medium", link: "https://leetcode.com/problems/find-all-anagrams-in-a-string/" }
+                ]
+            },
+            {
+                day: 31,
+                date: "Feb 11, 2025",
+                topic: "Sliding Window",
+                problems: [
+                    { title: "Minimum Size Subarray Sum", difficulty: "medium", link: "https://leetcode.com/problems/minimum-size-subarray-sum/" },
+                    { title: "Fruit Into Baskets", difficulty: "medium", link: "https://leetcode.com/problems/fruit-into-baskets/" }
+                ]
+            },
+            {
+                day: 32,
+                date: "Feb 12, 2025",
+                topic: "Sliding Window",
+                problems: [
+                    { title: "Substring with Concatenation of All Words", difficulty: "hard", link: "https://leetcode.com/problems/substring-with-concatenation-of-all-words/" },
+                    { title: "Maximum Average Subarray I", difficulty: "easy", link: "https://leetcode.com/problems/maximum-average-subarray-i/" }
+                ]
+            },
+            {
+                day: 33,
+                date: "Feb 13, 2025",
+                topic: "Sliding Window",
+                problems: [
+                    { title: "Minimum Difference Between Highest and Lowest of K Scores", difficulty: "easy", link: "https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/" },
+                    { title: "Longest Turbulent Subarray", difficulty: "medium", link: "https://leetcode.com/problems/longest-turbulent-subarray/" }
+                ]
+            },
+            {
+                day: 34,
+                date: "Feb 14, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Valid Parentheses", difficulty: "easy", link: "https://leetcode.com/problems/valid-parentheses/" },
+                    { title: "Min Stack", difficulty: "medium", link: "https://leetcode.com/problems/min-stack/" }
+                ]
+            },
+            {
+                day: 35,
+                date: "Feb 15, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 6: Stack
+            {
+                day: 36,
+                date: "Feb 16, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Evaluate Reverse Polish Notation", difficulty: "medium", link: "https://leetcode.com/problems/evaluate-reverse-polish-notation/" },
+                    { title: "Generate Parentheses", difficulty: "medium", link: "https://leetcode.com/problems/generate-parentheses/" }
+                ]
+            },
+            {
+                day: 37,
+                date: "Feb 17, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Daily Temperatures", difficulty: "medium", link: "https://leetcode.com/problems/daily-temperatures/" },
+                    { title: "Car Fleet", difficulty: "medium", link: "https://leetcode.com/problems/car-fleet/" }
+                ]
+            },
+            {
+                day: 38,
+                date: "Feb 18, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Largest Rectangle in Histogram", difficulty: "hard", link: "https://leetcode.com/problems/largest-rectangle-in-histogram/" },
+                    { title: "Basic Calculator", difficulty: "hard", link: "https://leetcode.com/problems/basic-calculator/" }
+                ]
+            },
+            {
+                day: 39,
+                date: "Feb 19, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Remove K Digits", difficulty: "medium", link: "https://leetcode.com/problems/remove-k-digits/" },
+                    { title: "Decode String", difficulty: "medium", link: "https://leetcode.com/problems/decode-string/" }
+                ]
+            },
+            {
+                day: 40,
+                date: "Feb 20, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Asteroid Collision", difficulty: "medium", link: "https://leetcode.com/problems/asteroid-collision/" },
+                    { title: "Remove All Adjacent Duplicates In String", difficulty: "easy", link: "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/" }
+                ]
+            },
+            {
+                day: 41,
+                date: "Feb 21, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Baseball Game", difficulty: "easy", link: "https://leetcode.com/problems/baseball-game/" },
+                    { title: "Next Greater Element II", difficulty: "medium", link: "https://leetcode.com/problems/next-greater-element-ii/" }
+                ]
+            },
+            {
+                day: 42,
+                date: "Feb 22, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 7: Stack + Binary Search
+            {
+                day: 43,
+                date: "Feb 23, 2025",
+                topic: "Stack",
+                problems: [
+                    { title: "Online Stock Span", difficulty: "medium", link: "https://leetcode.com/problems/online-stock-span/" },
+                    { title: "Binary Search", difficulty: "easy", link: "https://leetcode.com/problems/binary-search/" }
+                ]
+            },
+            {
+                day: 44,
+                date: "Feb 24, 2025",
+                topic: "Binary Search",
+                problems: [
+                    { title: "Search a 2D Matrix", difficulty: "medium", link: "https://leetcode.com/problems/search-a-2d-matrix/" },
+                    { title: "Koko Eating Bananas", difficulty: "medium", link: "https://leetcode.com/problems/koko-eating-bananas/" }
+                ]
+            },
+            {
+                day: 45,
+                date: "Feb 25, 2025",
+                topic: "Binary Search",
+                problems: [
+                    { title: "Find Minimum in Rotated Sorted Array", difficulty: "medium", link: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" },
+                    { title: "Search in Rotated Sorted Array", difficulty: "medium", link: "https://leetcode.com/problems/search-in-rotated-sorted-array/" }
+                ]
+            },
+            {
+                day: 46,
+                date: "Feb 26, 2025",
+                topic: "Binary Search",
+                problems: [
+                    { title: "Time Based Key-Value Store", difficulty: "medium", link: "https://leetcode.com/problems/time-based-key-value-store/" },
+                    { title: "Median of Two Sorted Arrays", difficulty: "hard", link: "https://leetcode.com/problems/median-of-two-sorted-arrays/" }
+                ]
+            },
+            {
+                day: 47,
+                date: "Feb 27, 2025",
+                topic: "Binary Search",
+                problems: [
+                    { title: "Find First and Last Position", difficulty: "medium", link: "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/" },
+                    { title: "Search Insert Position", difficulty: "easy", link: "https://leetcode.com/problems/search-insert-position/" }
+                ]
+            },
+            {
+                day: 48,
+                date: "Feb 28, 2025",
+                topic: "Binary Search",
+                problems: [
+                    { title: "Guess Number Higher or Lower", difficulty: "easy", link: "https://leetcode.com/problems/guess-number-higher-or-lower/" },
+                    { title: "First Bad Version", difficulty: "easy", link: "https://leetcode.com/problems/first-bad-version/" }
+                ]
+            },
+            {
+                day: 49,
+                date: "Mar 1, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 8: Binary Search + Linked List
+            {
+                day: 50,
+                date: "Mar 2, 2025",
+                topic: "Binary Search",
+                problems: [
+                    { title: "Valid Perfect Square", difficulty: "easy", link: "https://leetcode.com/problems/valid-perfect-square/" },
+                    { title: "Find Peak Element", difficulty: "medium", link: "https://leetcode.com/problems/find-peak-element/" }
+                ]
+            },
+            {
+                day: 51,
+                date: "Mar 3, 2025",
+                topic: "Binary Search",
+                problems: [
+                    { title: "Sqrt(x)", difficulty: "easy", link: "https://leetcode.com/problems/sqrtx/" },
+                    { title: "Search a 2D Matrix II", difficulty: "medium", link: "https://leetcode.com/problems/search-a-2d-matrix-ii/" }
+                ]
+            },
+            {
+                day: 52,
+                date: "Mar 4, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Reverse Linked List", difficulty: "easy", link: "https://leetcode.com/problems/reverse-linked-list/" },
+                    { title: "Merge Two Sorted Lists", difficulty: "easy", link: "https://leetcode.com/problems/merge-two-sorted-lists/" }
+                ]
+            },
+            {
+                day: 53,
+                date: "Mar 5, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Reorder List", difficulty: "medium", link: "https://leetcode.com/problems/reorder-list/" },
+                    { title: "Remove Nth Node From End of List", difficulty: "medium", link: "https://leetcode.com/problems/remove-nth-node-from-end-of-list/" }
+                ]
+            },
+            {
+                day: 54,
+                date: "Mar 6, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Copy List with Random Pointer", difficulty: "medium", link: "https://leetcode.com/problems/copy-list-with-random-pointer/" },
+                    { title: "Add Two Numbers", difficulty: "medium", link: "https://leetcode.com/problems/add-two-numbers/" }
+                ]
+            },
+            {
+                day: 55,
+                date: "Mar 7, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Linked List Cycle", difficulty: "easy", link: "https://leetcode.com/problems/linked-list-cycle/" },
+                    { title: "Find the Duplicate Number", difficulty: "medium", link: "https://leetcode.com/problems/find-the-duplicate-number/" }
+                ]
+            },
+            {
+                day: 56,
+                date: "Mar 8, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 9: Linked List
+            {
+                day: 57,
+                date: "Mar 9, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "LRU Cache", difficulty: "medium", link: "https://leetcode.com/problems/lru-cache/" },
+                    { title: "Merge k Sorted Lists", difficulty: "hard", link: "https://leetcode.com/problems/merge-k-sorted-lists/" }
+                ]
+            },
+            {
+                day: 58,
+                date: "Mar 10, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Reverse Nodes in k-Group", difficulty: "hard", link: "https://leetcode.com/problems/reverse-nodes-in-k-group/" },
+                    { title: "Middle of the Linked List", difficulty: "easy", link: "https://leetcode.com/problems/middle-of-the-linked-list/" }
+                ]
+            },
+            {
+                day: 59,
+                date: "Mar 11, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Palindrome Linked List", difficulty: "easy", link: "https://leetcode.com/problems/palindrome-linked-list/" },
+                    { title: "Remove Linked List Elements", difficulty: "easy", link: "https://leetcode.com/problems/remove-linked-list-elements/" }
+                ]
+            },
+            {
+                day: 60,
+                date: "Mar 12, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Delete Node in a Linked List", difficulty: "medium", link: "https://leetcode.com/problems/delete-node-in-a-linked-list/" },
+                    { title: "Linked List Cycle II", difficulty: "medium", link: "https://leetcode.com/problems/linked-list-cycle-ii/" }
+                ]
+            },
+            {
+                day: 61,
+                date: "Mar 13, 2025",
+                topic: "Linked List",
+                problems: [
+                    { title: "Intersection of Two Linked Lists", difficulty: "easy", link: "https://leetcode.com/problems/intersection-of-two-linked-lists/" },
+                    { title: "Invert Binary Tree", difficulty: "easy", link: "https://leetcode.com/problems/invert-binary-tree/" }
+                ]
+            },
+            {
+                day: 62,
+                date: "Mar 14, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Maximum Depth of Binary Tree", difficulty: "easy", link: "https://leetcode.com/problems/maximum-depth-of-binary-tree/" },
+                    { title: "Diameter of Binary Tree", difficulty: "easy", link: "https://leetcode.com/problems/diameter-of-binary-tree/" }
+                ]
+            },
+            {
+                day: 63,
+                date: "Mar 15, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 10: Trees
+            {
+                day: 64,
+                date: "Mar 16, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Balanced Binary Tree", difficulty: "easy", link: "https://leetcode.com/problems/balanced-binary-tree/" },
+                    { title: "Same Tree", difficulty: "easy", link: "https://leetcode.com/problems/same-tree/" }
+                ]
+            },
+            {
+                day: 65,
+                date: "Mar 17, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Subtree of Another Tree", difficulty: "easy", link: "https://leetcode.com/problems/subtree-of-another-tree/" },
+                    { title: "Lowest Common Ancestor of BST", difficulty: "medium", link: "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" }
+                ]
+            },
+            {
+                day: 66,
+                date: "Mar 18, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Binary Tree Level Order Traversal", difficulty: "medium", link: "https://leetcode.com/problems/binary-tree-level-order-traversal/" },
+                    { title: "Binary Tree Right Side View", difficulty: "medium", link: "https://leetcode.com/problems/binary-tree-right-side-view/" }
+                ]
+            },
+            {
+                day: 67,
+                date: "Mar 19, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Count Good Nodes in Binary Tree", difficulty: "medium", link: "https://leetcode.com/problems/count-good-nodes-in-binary-tree/" },
+                    { title: "Validate Binary Search Tree", difficulty: "medium", link: "https://leetcode.com/problems/validate-binary-search-tree/" }
+                ]
+            },
+            {
+                day: 68,
+                date: "Mar 20, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Kth Smallest Element in a BST", difficulty: "medium", link: "https://leetcode.com/problems/kth-smallest-element-in-a-bst/" },
+                    { title: "Construct Tree from Preorder and Inorder", difficulty: "medium", link: "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" }
+                ]
+            },
+            {
+                day: 69,
+                date: "Mar 21, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Binary Tree Maximum Path Sum", difficulty: "hard", link: "https://leetcode.com/problems/binary-tree-maximum-path-sum/" },
+                    { title: "Serialize and Deserialize Binary Tree", difficulty: "hard", link: "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" }
+                ]
+            },
+            {
+                day: 70,
+                date: "Mar 22, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 11: Trees
+            {
+                day: 71,
+                date: "Mar 23, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Symmetric Tree", difficulty: "easy", link: "https://leetcode.com/problems/symmetric-tree/" },
+                    { title: "Path Sum", difficulty: "easy", link: "https://leetcode.com/problems/path-sum/" }
+                ]
+            },
+            {
+                day: 72,
+                date: "Mar 24, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Minimum Depth of Binary Tree", difficulty: "easy", link: "https://leetcode.com/problems/minimum-depth-of-binary-tree/" },
+                    { title: "Binary Tree Paths", difficulty: "easy", link: "https://leetcode.com/problems/binary-tree-paths/" }
+                ]
+            },
+            {
+                day: 73,
+                date: "Mar 25, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Sum of Left Leaves", difficulty: "easy", link: "https://leetcode.com/problems/sum-of-left-leaves/" },
+                    { title: "Flatten Binary Tree to Linked List", difficulty: "medium", link: "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/" }
+                ]
+            },
+            {
+                day: 74,
+                date: "Mar 26, 2025",
+                topic: "Trees",
+                problems: [
+                    { title: "Path Sum II", difficulty: "medium", link: "https://leetcode.com/problems/path-sum-ii/" },
+                    { title: "Binary Tree Zigzag Level Order Traversal", difficulty: "medium", link: "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/" }
+                ]
+            },
+            {
+                day: 75,
+                date: "Mar 27, 2025",
+                topic: "Tries",
+                problems: [
+                    { title: "Implement Trie", difficulty: "medium", link: "https://leetcode.com/problems/implement-trie-prefix-tree/" },
+                    { title: "Design Add and Search Words Data Structure", difficulty: "medium", link: "https://leetcode.com/problems/design-add-and-search-words-data-structure/" }
+                ]
+            },
+            {
+                day: 76,
+                date: "Mar 28, 2025",
+                topic: "Tries",
+                problems: [
+                    { title: "Word Search II", difficulty: "hard", link: "https://leetcode.com/problems/word-search-ii/" },
+                    { title: "Longest Word in Dictionary", difficulty: "medium", link: "https://leetcode.com/problems/longest-word-in-dictionary/" }
+                ]
+            },
+            {
+                day: 77,
+                date: "Mar 29, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 12: Tries + Heap
+            {
+                day: 78,
+                date: "Mar 30, 2025",
+                topic: "Tries",
+                problems: [
+                    { title: "Replace Words", difficulty: "medium", link: "https://leetcode.com/problems/replace-words/" },
+                    { title: "Kth Largest Element in a Stream", difficulty: "easy", link: "https://leetcode.com/problems/kth-largest-element-in-a-stream/" }
+                ]
+            },
+            {
+                day: 79,
+                date: "Mar 31, 2025",
+                topic: "Heap / Priority Queue",
+                problems: [
+                    { title: "Last Stone Weight", difficulty: "easy", link: "https://leetcode.com/problems/last-stone-weight/" },
+                    { title: "K Closest Points to Origin", difficulty: "medium", link: "https://leetcode.com/problems/k-closest-points-to-origin/" }
+                ]
+            },
+            {
+                day: 80,
+                date: "Apr 1, 2025",
+                topic: "Heap / Priority Queue",
+                problems: [
+                    { title: "Kth Largest Element in an Array", difficulty: "medium", link: "https://leetcode.com/problems/kth-largest-element-in-an-array/" },
+                    { title: "Task Scheduler", difficulty: "medium", link: "https://leetcode.com/problems/task-scheduler/" }
+                ]
+            },
+            {
+                day: 81,
+                date: "Apr 2, 2025",
+                topic: "Heap / Priority Queue",
+                problems: [
+                    { title: "Design Twitter", difficulty: "medium", link: "https://leetcode.com/problems/design-twitter/" },
+                    { title: "Find Median from Data Stream", difficulty: "hard", link: "https://leetcode.com/problems/find-median-from-data-stream/" }
+                ]
+            },
+            {
+                day: 82,
+                date: "Apr 3, 2025",
+                topic: "Heap / Priority Queue",
+                problems: [
+                    { title: "Top K Frequent Words", difficulty: "medium", link: "https://leetcode.com/problems/top-k-frequent-words/" },
+                    { title: "Ugly Number II", difficulty: "medium", link: "https://leetcode.com/problems/ugly-number-ii/" }
+                ]
+            },
+            {
+                day: 83,
+                date: "Apr 4, 2025",
+                topic: "Heap / Priority Queue",
+                problems: [
+                    { title: "Sort Characters By Frequency", difficulty: "medium", link: "https://leetcode.com/problems/sort-characters-by-frequency/" },
+                    { title: "Subsets", difficulty: "medium", link: "https://leetcode.com/problems/subsets/" }
+                ]
+            },
+            {
+                day: 84,
+                date: "Apr 5, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 13: Backtracking
+            {
+                day: 85,
+                date: "Apr 6, 2025",
+                topic: "Backtracking",
+                problems: [
+                    { title: "Combination Sum", difficulty: "medium", link: "https://leetcode.com/problems/combination-sum/" },
+                    { title: "Permutations", difficulty: "medium", link: "https://leetcode.com/problems/permutations/" }
+                ]
+            },
+            {
+                day: 86,
+                date: "Apr 7, 2025",
+                topic: "Backtracking",
+                problems: [
+                    { title: "Subsets II", difficulty: "medium", link: "https://leetcode.com/problems/subsets-ii/" },
+                    { title: "Combination Sum II", difficulty: "medium", link: "https://leetcode.com/problems/combination-sum-ii/" }
+                ]
+            },
+            {
+                day: 87,
+                date: "Apr 8, 2025",
+                topic: "Backtracking",
+                problems: [
+                    { title: "Word Search", difficulty: "medium", link: "https://leetcode.com/problems/word-search/" },
+                    { title: "Palindrome Partitioning", difficulty: "medium", link: "https://leetcode.com/problems/palindrome-partitioning/" }
+                ]
+            },
+            {
+                day: 88,
+                date: "Apr 9, 2025",
+                topic: "Backtracking",
+                problems: [
+                    { title: "Letter Combinations of a Phone Number", difficulty: "medium", link: "https://leetcode.com/problems/letter-combinations-of-a-phone-number/" },
+                    { title: "N-Queens", difficulty: "hard", link: "https://leetcode.com/problems/n-queens/" }
+                ]
+            },
+            {
+                day: 89,
+                date: "Apr 10, 2025",
+                topic: "Backtracking",
+                problems: [
+                    { title: "Restore IP Addresses", difficulty: "medium", link: "https://leetcode.com/problems/restore-ip-addresses/" },
+                    { title: "Combinations", difficulty: "medium", link: "https://leetcode.com/problems/combinations/" }
+                ]
+            },
+            {
+                day: 90,
+                date: "Apr 11, 2025",
+                topic: "Graphs",
+                problems: [
+                    { title: "Number of Islands", difficulty: "medium", link: "https://leetcode.com/problems/number-of-islands/" },
+                    { title: "Clone Graph", difficulty: "medium", link: "https://leetcode.com/problems/clone-graph/" }
+                ]
+            },
+            {
+                day: 91,
+                date: "Apr 12, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 14: Graphs
+            {
+                day: 92,
+                date: "Apr 13, 2025",
+                topic: "Graphs",
+                problems: [
+                    { title: "Max Area of Island", difficulty: "medium", link: "https://leetcode.com/problems/max-area-of-island/" },
+                    { title: "Pacific Atlantic Water Flow", difficulty: "medium", link: "https://leetcode.com/problems/pacific-atlantic-water-flow/" }
+                ]
+            },
+            {
+                day: 93,
+                date: "Apr 14, 2025",
+                topic: "Graphs",
+                problems: [
+                    { title: "Surrounded Regions", difficulty: "medium", link: "https://leetcode.com/problems/surrounded-regions/" },
+                    { title: "Rotting Oranges", difficulty: "medium", link: "https://leetcode.com/problems/rotting-oranges/" }
+                ]
+            },
+            {
+                day: 94,
+                date: "Apr 15, 2025",
+                topic: "Graphs",
+                problems: [
+                    { title: "Course Schedule", difficulty: "medium", link: "https://leetcode.com/problems/course-schedule/" },
+                    { title: "Course Schedule II", difficulty: "medium", link: "https://leetcode.com/problems/course-schedule-ii/" }
+                ]
+            },
+            {
+                day: 95,
+                date: "Apr 16, 2025",
+                topic: "Graphs",
+                problems: [
+                    { title: "Redundant Connection", difficulty: "medium", link: "https://leetcode.com/problems/redundant-connection/" },
+                    { title: "Word Ladder", difficulty: "hard", link: "https://leetcode.com/problems/word-ladder/" }
+                ]
+            },
+            {
+                day: 96,
+                date: "Apr 17, 2025",
+                topic: "Graphs",
+                problems: [
+                    { title: "Flood Fill", difficulty: "easy", link: "https://leetcode.com/problems/flood-fill/" },
+                    { title: "Find if Path Exists in Graph", difficulty: "easy", link: "https://leetcode.com/problems/find-if-path-exists-in-graph/" }
+                ]
+            },
+            {
+                day: 97,
+                date: "Apr 18, 2025",
+                topic: "Advanced Graphs",
+                problems: [
+                    { title: "Reconstruct Itinerary", difficulty: "hard", link: "https://leetcode.com/problems/reconstruct-itinerary/" },
+                    { title: "Min Cost to Connect All Points", difficulty: "medium", link: "https://leetcode.com/problems/min-cost-to-connect-all-points/" }
+                ]
+            },
+            {
+                day: 98,
+                date: "Apr 19, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 15: Advanced Graphs + DP
+            {
+                day: 99,
+                date: "Apr 20, 2025",
+                topic: "Advanced Graphs",
+                problems: [
+                    { title: "Network Delay Time", difficulty: "medium", link: "https://leetcode.com/problems/network-delay-time/" },
+                    { title: "Swim in Rising Water", difficulty: "hard", link: "https://leetcode.com/problems/swim-in-rising-water/" }
+                ]
+            },
+            {
+                day: 100,
+                date: "Apr 21, 2025",
+                topic: "Advanced Graphs",
+                problems: [
+                    { title: "Cheapest Flights Within K Stops", difficulty: "medium", link: "https://leetcode.com/problems/cheapest-flights-within-k-stops/" },
+                    { title: "Climbing Stairs", difficulty: "easy", link: "https://leetcode.com/problems/climbing-stairs/" }
+                ]
+            },
+            {
+                day: 101,
+                date: "Apr 22, 2025",
+                topic: "1-D Dynamic Programming",
+                problems: [
+                    { title: "Min Cost Climbing Stairs", difficulty: "easy", link: "https://leetcode.com/problems/min-cost-climbing-stairs/" },
+                    { title: "House Robber", difficulty: "medium", link: "https://leetcode.com/problems/house-robber/" }
+                ]
+            },
+            {
+                day: 102,
+                date: "Apr 23, 2025",
+                topic: "1-D Dynamic Programming",
+                problems: [
+                    { title: "House Robber II", difficulty: "medium", link: "https://leetcode.com/problems/house-robber-ii/" },
+                    { title: "Longest Palindromic Substring", difficulty: "medium", link: "https://leetcode.com/problems/longest-palindromic-substring/" }
+                ]
+            },
+            {
+                day: 103,
+                date: "Apr 24, 2025",
+                topic: "1-D Dynamic Programming",
+                problems: [
+                    { title: "Palindromic Substrings", difficulty: "medium", link: "https://leetcode.com/problems/palindromic-substrings/" },
+                    { title: "Decode Ways", difficulty: "medium", link: "https://leetcode.com/problems/decode-ways/" }
+                ]
+            },
+            {
+                day: 104,
+                date: "Apr 25, 2025",
+                topic: "1-D Dynamic Programming",
+                problems: [
+                    { title: "Coin Change", difficulty: "medium", link: "https://leetcode.com/problems/coin-change/" },
+                    { title: "Maximum Product Subarray", difficulty: "medium", link: "https://leetcode.com/problems/maximum-product-subarray/" }
+                ]
+            },
+            {
+                day: 105,
+                date: "Apr 26, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 16: 1-D DP
+            {
+                day: 106,
+                date: "Apr 27, 2025",
+                topic: "1-D Dynamic Programming",
+                problems: [
+                    { title: "Word Break", difficulty: "medium", link: "https://leetcode.com/problems/word-break/" },
+                    { title: "Longest Increasing Subsequence", difficulty: "medium", link: "https://leetcode.com/problems/longest-increasing-subsequence/" }
+                ]
+            },
+            {
+                day: 107,
+                date: "Apr 28, 2025",
+                topic: "1-D Dynamic Programming",
+                problems: [
+                    { title: "Partition Equal Subset Sum", difficulty: "medium", link: "https://leetcode.com/problems/partition-equal-subset-sum/" },
+                    { title: "Counting Bits", difficulty: "easy", link: "https://leetcode.com/problems/counting-bits/" }
+                ]
+            },
+            {
+                day: 108,
+                date: "Apr 29, 2025",
+                topic: "1-D Dynamic Programming",
+                problems: [
+                    { title: "N-th Tribonacci Number", difficulty: "easy", link: "https://leetcode.com/problems/n-th-tribonacci-number/" },
+                    { title: "Delete and Earn", difficulty: "medium", link: "https://leetcode.com/problems/delete-and-earn/" }
+                ]
+            },
+            {
+                day: 109,
+                date: "Apr 30, 2025",
+                topic: "2-D Dynamic Programming",
+                problems: [
+                    { title: "Unique Paths", difficulty: "medium", link: "https://leetcode.com/problems/unique-paths/" },
+                    { title: "Longest Common Subsequence", difficulty: "medium", link: "https://leetcode.com/problems/longest-common-subsequence/" }
+                ]
+            },
+            {
+                day: 110,
+                date: "May 1, 2025",
+                topic: "2-D Dynamic Programming",
+                problems: [
+                    { title: "Best Time to Buy/Sell Stock With Cooldown", difficulty: "medium", link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" },
+                    { title: "Coin Change II", difficulty: "medium", link: "https://leetcode.com/problems/coin-change-ii/" }
+                ]
+            },
+            {
+                day: 111,
+                date: "May 2, 2025",
+                topic: "2-D Dynamic Programming",
+                problems: [
+                    { title: "Target Sum", difficulty: "medium", link: "https://leetcode.com/problems/target-sum/" },
+                    { title: "Interleaving String", difficulty: "medium", link: "https://leetcode.com/problems/interleaving-string/" }
+                ]
+            },
+            {
+                day: 112,
+                date: "May 3, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 17: 2-D DP
+            {
+                day: 113,
+                date: "May 4, 2025",
+                topic: "2-D Dynamic Programming",
+                problems: [
+                    { title: "Longest Increasing Path in a Matrix", difficulty: "hard", link: "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/" },
+                    { title: "Distinct Subsequences", difficulty: "hard", link: "https://leetcode.com/problems/distinct-subsequences/" }
+                ]
+            },
+            {
+                day: 114,
+                date: "May 5, 2025",
+                topic: "2-D Dynamic Programming",
+                problems: [
+                    { title: "Edit Distance", difficulty: "hard", link: "https://leetcode.com/problems/edit-distance/" },
+                    { title: "Burst Balloons", difficulty: "hard", link: "https://leetcode.com/problems/burst-balloons/" }
+                ]
+            },
+            {
+                day: 115,
+                date: "May 6, 2025",
+                topic: "2-D Dynamic Programming",
+                problems: [
+                    { title: "Regular Expression Matching", difficulty: "hard", link: "https://leetcode.com/problems/regular-expression-matching/" },
+                    { title: "Unique Paths II", difficulty: "medium", link: "https://leetcode.com/problems/unique-paths-ii/" }
+                ]
+            },
+            {
+                day: 116,
+                date: "May 7, 2025",
+                topic: "2-D Dynamic Programming",
+                problems: [
+                    { title: "Minimum Path Sum", difficulty: "medium", link: "https://leetcode.com/problems/minimum-path-sum/" },
+                    { title: "Maximum Subarray", difficulty: "medium", link: "https://leetcode.com/problems/maximum-subarray/" }
+                ]
+            },
+            {
+                day: 117,
+                date: "May 8, 2025",
+                topic: "Greedy",
+                problems: [
+                    { title: "Jump Game", difficulty: "medium", link: "https://leetcode.com/problems/jump-game/" },
+                    { title: "Jump Game II", difficulty: "medium", link: "https://leetcode.com/problems/jump-game-ii/" }
+                ]
+            },
+            {
+                day: 118,
+                date: "May 9, 2025",
+                topic: "Greedy",
+                problems: [
+                    { title: "Gas Station", difficulty: "medium", link: "https://leetcode.com/problems/gas-station/" },
+                    { title: "Hand of Straights", difficulty: "medium", link: "https://leetcode.com/problems/hand-of-straights/" }
+                ]
+            },
+            {
+                day: 119,
+                date: "May 10, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 18: Greedy + Intervals
+            {
+                day: 120,
+                date: "May 11, 2025",
+                topic: "Greedy",
+                problems: [
+                    { title: "Merge Triplets to Form Target", difficulty: "medium", link: "https://leetcode.com/problems/merge-triplets-to-form-target-triplet/" },
+                    { title: "Partition Labels", difficulty: "medium", link: "https://leetcode.com/problems/partition-labels/" }
+                ]
+            },
+            {
+                day: 121,
+                date: "May 12, 2025",
+                topic: "Greedy",
+                problems: [
+                    { title: "Valid Parenthesis String", difficulty: "medium", link: "https://leetcode.com/problems/valid-parenthesis-string/" },
+                    { title: "Assign Cookies", difficulty: "easy", link: "https://leetcode.com/problems/assign-cookies/" }
+                ]
+            },
+            {
+                day: 122,
+                date: "May 13, 2025",
+                topic: "Greedy",
+                problems: [
+                    { title: "Lemonade Change", difficulty: "easy", link: "https://leetcode.com/problems/lemonade-change/" },
+                    { title: "Insert Interval", difficulty: "medium", link: "https://leetcode.com/problems/insert-interval/" }
+                ]
+            },
+            {
+                day: 123,
+                date: "May 14, 2025",
+                topic: "Intervals",
+                problems: [
+                    { title: "Merge Intervals", difficulty: "medium", link: "https://leetcode.com/problems/merge-intervals/" },
+                    { title: "Non-overlapping Intervals", difficulty: "medium", link: "https://leetcode.com/problems/non-overlapping-intervals/" }
+                ]
+            },
+            {
+                day: 124,
+                date: "May 15, 2025",
+                topic: "Intervals",
+                problems: [
+                    { title: "Minimum Interval to Include Each Query", difficulty: "hard", link: "https://leetcode.com/problems/minimum-interval-to-include-each-query/" },
+                    { title: "Summary Ranges", difficulty: "easy", link: "https://leetcode.com/problems/summary-ranges/" }
+                ]
+            },
+            {
+                day: 125,
+                date: "May 16, 2025",
+                topic: "Intervals",
+                problems: [
+                    { title: "Interval List Intersections", difficulty: "medium", link: "https://leetcode.com/problems/interval-list-intersections/" },
+                    { title: "Rotate Image", difficulty: "medium", link: "https://leetcode.com/problems/rotate-image/" }
+                ]
+            },
+            {
+                day: 126,
+                date: "May 17, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 19: Math & Geometry
+            {
+                day: 127,
+                date: "May 18, 2025",
+                topic: "Math & Geometry",
+                problems: [
+                    { title: "Spiral Matrix", difficulty: "medium", link: "https://leetcode.com/problems/spiral-matrix/" },
+                    { title: "Set Matrix Zeroes", difficulty: "medium", link: "https://leetcode.com/problems/set-matrix-zeroes/" }
+                ]
+            },
+            {
+                day: 128,
+                date: "May 19, 2025",
+                topic: "Math & Geometry",
+                problems: [
+                    { title: "Pow(x, n)", difficulty: "medium", link: "https://leetcode.com/problems/powx-n/" },
+                    { title: "Multiply Strings", difficulty: "medium", link: "https://leetcode.com/problems/multiply-strings/" }
+                ]
+            },
+            {
+                day: 129,
+                date: "May 20, 2025",
+                topic: "Math & Geometry",
+                problems: [
+                    { title: "Detect Squares", difficulty: "medium", link: "https://leetcode.com/problems/detect-squares/" },
+                    { title: "Reverse Integer", difficulty: "medium", link: "https://leetcode.com/problems/reverse-integer/" }
+                ]
+            },
+            {
+                day: 130,
+                date: "May 21, 2025",
+                topic: "Math & Geometry",
+                problems: [
+                    { title: "Add Binary", difficulty: "easy", link: "https://leetcode.com/problems/add-binary/" },
+                    { title: "Single Number", difficulty: "easy", link: "https://leetcode.com/problems/single-number/" }
+                ]
+            },
+            {
+                day: 131,
+                date: "May 22, 2025",
+                topic: "Bit Manipulation",
+                problems: [
+                    { title: "Number of 1 Bits", difficulty: "easy", link: "https://leetcode.com/problems/number-of-1-bits/" },
+                    { title: "Reverse Bits", difficulty: "easy", link: "https://leetcode.com/problems/reverse-bits/" }
+                ]
+            },
+            {
+                day: 132,
+                date: "May 23, 2025",
+                topic: "Bit Manipulation",
+                problems: [
+                    { title: "Missing Number", difficulty: "easy", link: "https://leetcode.com/problems/missing-number/" },
+                    { title: "Sum of Two Integers", difficulty: "medium", link: "https://leetcode.com/problems/sum-of-two-integers/" }
+                ]
+            },
+            {
+                day: 133,
+                date: "May 24, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            // Week 20-21: Buffer Days & Final Review
+            {
+                day: 134,
+                date: "May 25, 2025",
+                topic: "Bit Manipulation",
+                problems: [
+                    { title: "Power of Two", difficulty: "easy", link: "https://leetcode.com/problems/power-of-two/" },
+                    { title: "Single Number II", difficulty: "medium", link: "https://leetcode.com/problems/single-number-ii/" }
+                ]
+            },
+            {
+                day: 135,
+                date: "May 26, 2025",
+                topic: "Mixed Practice",
+                problems: [
+                    { title: "Meeting Rooms", difficulty: "easy", link: "https://leetcode.com/problems/meeting-rooms/" },
+                    { title: "Meeting Rooms II", difficulty: "medium", link: "https://leetcode.com/problems/meeting-rooms-ii/" }
+                ]
+            },
+            {
+                day: 136,
+                date: "May 27, 2025",
+                topic: "Mixed Practice",
+                problems: [
+                    { title: "Number of Connected Components", difficulty: "medium", link: "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" },
+                    { title: "Graph Valid Tree", difficulty: "medium", link: "https://leetcode.com/problems/graph-valid-tree/" }
+                ]
+            },
+            {
+                day: 137,
+                date: "May 28, 2025",
+                topic: "Mixed Practice",
+                problems: [
+                    { title: "Walls and Gates", difficulty: "medium", link: "https://leetcode.com/problems/walls-and-gates/" },
+                    { title: "Alien Dictionary", difficulty: "hard", link: "https://leetcode.com/problems/alien-dictionary/" }
+                ]
+            },
+            {
+                day: 138,
+                date: "May 29, 2025",
+                topic: "Mixed Practice",
+                problems: [
+                    { title: "Longest Substring with At Most K Distinct Characters", difficulty: "medium", link: "https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/" },
+                    { title: "Group Shifted Strings", difficulty: "medium", link: "https://leetcode.com/problems/group-shifted-strings/" }
+                ]
+            },
+            {
+                day: 139,
+                date: "May 30, 2025",
+                topic: "Buffer Day - Practice Weak Areas",
+                problems: []
+            },
+            {
+                day: 140,
+                date: "May 31, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            {
+                day: 141,
+                date: "Jun 1, 2025",
+                topic: "Final Review Week",
+                problems: []
+            },
+            {
+                day: 142,
+                date: "Jun 2, 2025",
+                topic: "Final Review Week",
+                problems: []
+            },
+            {
+                day: 143,
+                date: "Jun 3, 2025",
+                topic: "Final Review Week",
+                problems: []
+            },
+            {
+                day: 144,
+                date: "Jun 4, 2025",
+                topic: "Final Review Week",
+                problems: []
+            },
+            {
+                day: 145,
+                date: "Jun 5, 2025",
+                topic: "Final Review Week",
+                problems: []
+            },
+            {
+                day: 146,
+                date: "Jun 6, 2025",
+                topic: "Final Review Week",
+                problems: []
+            },
+            {
+                day: 147,
+                date: "Jun 7, 2025",
+                topic: "REVISION SUNDAY",
+                isRevision: true,
+                problems: []
+            },
+            {
+                day: 148,
+                date: "Jun 8, 2025",
+                topic: "Mock Interviews",
+                problems: []
+            },
+            {
+                day: 149,
+                date: "Jun 9, 2025",
+                topic: "Mock Interviews",
+                problems: []
+            },
+            {
+                day: 150,
+                date: "Jun 10, 2025",
+                topic: "🎉 FINAL DAY - CELEBRATION!",
+                problems: []
+            }
         ];
-        
-        const startDate = new Date('2025-01-08'); // Start date: Tomorrow (Jan 8, 2025)
-        
-        // Load progress from memory
-        let progress = {};
-        
+
+        let completedProblems = new Set();
+        let problemNotes = {};
+        let currentFilter = 'all';
+
         function loadProgress() {
-            const saved = localStorage.getItem('neetcode250Progress');
+            const saved = localStorage.getItem('neetcode150Progress');
             if (saved) {
-                progress = JSON.parse(saved);
+                const data = JSON.parse(saved);
+                completedProblems = new Set(data.completed || []);
+                problemNotes = data.notes || {};
             }
         }
-        
+
         function saveProgress() {
-            localStorage.setItem('neetcode250Progress', JSON.stringify(progress));
-            updateStats();
+            const data = {
+                completed: Array.from(completedProblems),
+                notes: problemNotes
+            };
+            localStorage.setItem('neetcode150Progress', JSON.stringify(data));
         }
-        
-        function updateStats() {
-            let completedCount = 0;
-            Object.values(progress).forEach(day => {
-                if (day.p1) completedCount++;
-                if (day.p2) completedCount++;
-                if (day.p3) completedCount++;
-            });
-            
-            const remaining = 250 - completedCount;
-            const percentage = Math.round((completedCount / 250) * 100);
-            
-            document.getElementById('completedCount').textContent = completedCount;
-            document.getElementById('remainingCount').textContent = remaining;
-            document.getElementById('progressFill').style.width = percentage + '%';
-            document.getElementById('progressFill').textContent = percentage + '% Complete';
-            
-            // Update current day
-            const today = new Date();
-            const diffTime = Math.abs(today - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            if (diffDays <= 100) {
-                document.getElementById('currentDay').textContent = `Day ${diffDays}`;
-            } else {
-                document.getElementById('currentDay').textContent = 'Completed!';
-            }
-        }
-        
-        function generateTableRows() {
-            const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = '';
-            
-            studyPlan.forEach(day => {
-                const row = document.createElement('tr');
-                const currentDate = new Date(startDate);
-                currentDate.setDate(startDate.getDate() + day.day - 1);
-                
-                const dateStr = currentDate.toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                });
-                
-                const p1 = day.problems[0] || {name: '-', diff: '', link: '#'};
-                const p2 = day.problems[1] || {name: '-', diff: '', link: '#'};
-                const p3 = day.problems[2] || {name: '-', diff: '', link: '#'};
-                
-                const dayProgress = progress[day.day] || {p1: false, p2: false, p3: false};
-                
-                // Check if entire day is completed
-                const isDayComplete = dayProgress.p1 && dayProgress.p2 && (p3.name === '-' || dayProgress.p3);
-                if (isDayComplete) {
-                    row.classList.add('completed-row');
-                }
-                
-                row.innerHTML = `
-                    <td class="day-cell">Day ${day.day}</td>
-                    <td class="date-cell">${dateStr}</td>
-                    <td class="topic-cell">${day.topic}</td>
-                    <td class="checkbox-cell">
-                        <input type="checkbox" ${dayProgress.p1 ? 'checked' : ''} 
-                               onchange="toggleProblem(${day.day}, 'p1', this.checked)">
-                    </td>
-                    <td class="problem-cell ${dayProgress.p1 ? 'completed-problem' : ''}">${p1.name}</td>
-                    <td>${p1.diff ? `<span class="difficulty ${p1.diff}">${p1.diff.toUpperCase()}</span>` : ''}</td>
-                    <td class="link-cell">${p1.link !== '#' ? `<a href="${p1.link}" target="_blank">Solve</a>` : ''}</td>
-                    <td class="checkbox-cell">
-                        ${p2.name !== '-' ? `<input type="checkbox" ${dayProgress.p2 ? 'checked' : ''} 
-                               onchange="toggleProblem(${day.day}, 'p2', this.checked)">` : ''}
-                    </td>
-                    <td class="problem-cell ${dayProgress.p2 ? 'completed-problem' : ''}">${p2.name}</td>
-                    <td>${p2.diff ? `<span class="difficulty ${p2.diff}">${p2.diff.toUpperCase()}</span>` : ''}</td>
-                    <td class="link-cell">${p2.link !== '#' ? `<a href="${p2.link}" target="_blank">Solve</a>` : ''}</td>
-                    <td class="checkbox-cell">
-                        ${p3.name !== '-' ? `<input type="checkbox" ${dayProgress.p3 ? 'checked' : ''} 
-                               onchange="toggleProblem(${day.day}, 'p3', this.checked)">` : ''}
-                    </td>
-                    <td class="problem-cell ${dayProgress.p3 ? 'completed-problem' : ''}">${p3.name}</td>
-                    <td>${p3.diff ? `<span class="difficulty ${p3.diff}">${p3.diff.toUpperCase()}</span>` : ''}</td>
-                    <td class="link-cell">${p3.link !== '#' ? `<a href="${p3.link}" target="_blank">Solve</a>` : ''}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-        
-        function toggleProblem(day, problem, checked) {
-            if (!progress[day]) {
-                progress[day] = {p1: false, p2: false, p3: false};
-            }
-            progress[day][problem] = checked;
-            saveProgress();
-            generateTableRows();
-        }
-        
+
         function resetProgress() {
-            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
-                progress = {};
-                localStorage.removeItem('neetcode250Progress');
-                generateTableRows();
+            if (confirm('⚠️ Are you sure you want to reset ALL progress? This cannot be undone!')) {
+                completedProblems.clear();
+                problemNotes = {};
+                saveProgress();
+                renderDays();
                 updateStats();
             }
         }
-        
-        function exportToCSV() {
-            let csv = 'Day,Date,Topic,Problem 1,Difficulty 1,Link 1,Problem 2,Difficulty 2,Link 2,Problem 3,Difficulty 3,Link 3\n';
-            
-            studyPlan.forEach(day => {
-                const currentDate = new Date(startDate);
-                currentDate.setDate(startDate.getDate() + day.day - 1);
-                const dateStr = currentDate.toLocaleDateString('en-US');
-                
-                const p1 = day.problems[0] || {name: '', diff: '', link: ''};
-                const p2 = day.problems[1] || {name: '', diff: '', link: ''};
-                const p3 = day.problems[2] || {name: '', diff: '', link: ''};
-                
-                csv += `${day.day},${dateStr},${day.topic},"${p1.name}",${p1.diff},${p1.link},"${p2.name}",${p2.diff},${p2.link},"${p3.name}",${p3.diff},${p3.link}\n`;
-            });
-            
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'neetcode_250_100day_plan.csv';
-            a.click();
-            window.URL.revokeObjectURL(url);
+
+        function toggleProblem(problemId) {
+            if (completedProblems.has(problemId)) {
+                completedProblems.delete(problemId);
+            } else {
+                completedProblems.add(problemId);
+            }
+            saveProgress();
+            renderDays();
+            updateStats();
         }
-        
-        function filterTable() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const topicFilter = document.getElementById('topicFilter').value;
-            const rows = document.querySelectorAll('#tableBody tr');
+
+        function getCurrentDay() {
+            const today = new Date();
+            const daysPassed = Math.floor((today - START_DATE) / (1000 * 60 * 60 * 24));
+            return daysPassed + 1;
+        }
+
+        function updateStats() {
+            const totalProblems = dailyPlan.reduce((sum, day) => sum + day.problems.length, 0);
+            const completed = completedProblems.size;
+            const remaining = totalProblems - completed;
+            const percentage = totalProblems > 0 ? Math.round((completed / totalProblems) * 100) : 0;
             
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                const topic = row.cells[2].textContent;
-                
-                const matchesSearch = text.includes(searchTerm);
-                const matchesTopic = !topicFilter || topic === topicFilter;
-                
-                row.style.display = matchesSearch && matchesTopic ? '' : 'none';
+            document.getElementById('totalCompleted').textContent = completed;
+            document.getElementById('totalRemaining').textContent = remaining;
+            document.getElementById('percentComplete').textContent = percentage + '%';
+            document.getElementById('progressFill').style.width = percentage + '%';
+            document.getElementById('progressFill').textContent = percentage + '%';
+            
+            const currentDay = getCurrentDay();
+            document.getElementById('currentDayNum').textContent = currentDay > 150 ? 'Completed!' : `Day ${currentDay}`;
+            
+            const today = new Date();
+            document.getElementById('currentDate').textContent = today.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
             });
         }
-        
-        document.getElementById('searchInput').addEventListener('input', filterTable);
-        document.getElementById('topicFilter').addEventListener('change', filterTable);
-        
+
+        function renderDays() {
+            const container = document.getElementById('daysContainer');
+            container.innerHTML = '';
+
+            const currentDay = getCurrentDay();
+            let globalProblemNumber = 0;
+
+            dailyPlan.forEach(day => {
+                const dayCompleted = day.problems.every(p => 
+                    completedProblems.has(`day${day.day}-${p.title}`)
+                );
+                
+                const dayStarted = day.problems.some(p => 
+                    completedProblems.has(`day${day.day}-${p.title}`)
+                );
+
+                // Apply filters
+                if (currentFilter === 'completed' && !dayCompleted && day.problems.length > 0) return;
+                if (currentFilter === 'pending' && (dayCompleted || day.problems.length === 0)) return;
+                if (currentFilter === 'today' && day.day !== currentDay) return;
+
+                const daySection = document.createElement('div');
+                daySection.className = `day-section ${day.day === currentDay ? 'current-day' : ''} ${day.isRevision ? 'revision-day' : ''}`;
+                
+                const isCurrentDay = day.day === currentDay;
+                const headerClass = day.isRevision ? 'revision' : (isCurrentDay ? 'current' : '');
+                
+                const completedCount = day.problems.filter(p => 
+                    completedProblems.has(`day${day.day}-${p.title}`)
+                ).length;
+
+                daySection.innerHTML = `
+                    <div class="day-header ${headerClass}" onclick="toggleDay(this)">
+                        <div class="day-info">
+                            <span style="font-size: 1.2em;">Day ${day.day}</span>
+                            <span class="day-badge">${day.date}</span>
+                            <span class="day-badge">${day.topic}</span>
+                            ${isCurrentDay ? '<span class="day-badge" style="background: rgba(255,255,255,0.4);">📍 TODAY</span>' : ''}
+                        </div>
+                        <div class="day-info">
+                            ${day.problems.length > 0 ? `<span class="day-progress">${completedCount}/${day.problems.length} completed</span>` : ''}
+                            <span class="collapse-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="problems-container" id="day${day.day}">
+                    </div>
+                `;
+
+                const problemsContainer = daySection.querySelector('.problems-container');
+
+                day.problems.forEach(problem => {
+                    globalProblemNumber++;
+                    const problemId = `day${day.day}-${problem.title}`;
+                    const isCompleted = completedProblems.has(problemId);
+
+                    const problemDiv = document.createElement('div');
+                    problemDiv.className = `problem-item ${isCompleted ? 'completed' : ''}`;
+                    problemDiv.innerHTML = `
+                        <div class="problem-info">
+                            <div class="problem-number">Problem #${globalProblemNumber}</div>
+                            <div class="problem-title">${problem.title}</div>
+                            <div class="problem-meta">
+                                <span class="problem-difficulty ${problem.difficulty}">${problem.difficulty.toUpperCase()}</span>
+                                <span class="problem-topic">${day.topic}</span>
+                            </div>
+                        </div>
+                        <div class="problem-actions">
+                            <div class="check-button" onclick="toggleProblem('${problemId}')">
+                                ${isCompleted ? '✓' : ''}
+                            </div>
+                            <a href="${problem.link}" target="_blank" class="leetcode-link" onclick="event.stopPropagation()">
+                                LeetCode →
+                            </a>
+                        </div>
+                    `;
+
+                    problemsContainer.appendChild(problemDiv);
+                });
+
+                container.appendChild(daySection);
+            });
+
+            updateStats();
+        }
+
+        function toggleDay(header) {
+            const section = header.parentElement;
+            const container = header.nextElementSibling;
+            container.classList.toggle('hidden');
+            section.classList.toggle('collapsed');
+        }
+
+        function filterDays(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderDays();
+        }
+
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.problem-item').forEach(item => {
+                const title = item.querySelector('.problem-title').textContent.toLowerCase();
+                const number = item.querySelector('.problem-number').textContent.toLowerCase();
+                if (title.includes(searchTerm) || number.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show/hide day sections based on visible problems
+            document.querySelectorAll('.day-section').forEach(section => {
+                const visibleProblems = section.querySelectorAll('.problem-item:not([style*="display: none"])');
+                if (visibleProblems.length > 0 || searchTerm === '') {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('searchBox').focus();
+            }
+        });
+
+        // Auto-scroll to current day on load
+        function scrollToCurrentDay() {
+            setTimeout(() => {
+                const currentDayElement = document.querySelector('.day-section.current-day');
+                if (currentDayElement) {
+                    currentDayElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 500);
+        }
+
         // Initialize
         loadProgress();
-        generateTableRows();
-        updateStats();
+        renderDays();
+        scrollToCurrentDay();
+
+        // Auto-save every 30 seconds
+        setInterval(saveProgress, 30000);
+
+        // Export progress function
+        function exportProgress() {
+            const data = {
+                completed: Array.from(completedProblems),
+                notes: problemNotes,
+                exportDate: new Date().toISOString(),
+                totalCompleted: completedProblems.size
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `neetcode-progress-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+
+        // Add export button functionality
+        console.log('📊 Tip: Open console and type "exportProgress()" to download your progress as JSON');
     </script>
 </body>
 </html>
